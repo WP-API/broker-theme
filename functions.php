@@ -83,3 +83,36 @@ add_filter( 'map_meta_cap', function( $caps, $cap, $user_id, $args ) {
 
 	return $caps;
 }, 10, 4 );
+
+add_action( 'init', function() {
+	if ( ! isset( $_GET['ba-action'] ) ) {
+		return;
+	}
+
+	global $wp_query;
+
+	switch ( $_GET['ba-action'] ) {
+		case 'regenerate-app-secret':
+			if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'regenerate-secret' ) ) {
+				wp_die( 'Failed nonce check.' );
+			}
+
+			if ( ! current_user_can( 'edit_json_consumer', absint( $_GET['consumer'] ) ) ) {
+				wp_die( 'You are not allowed to do this.' );
+			}
+			$consumer = WP_REST_OAuth1_Client::get( absint( $_GET['consumer'] ) );
+
+			if ( is_wp_error( $consumer ) ) {
+				wp_die( $consumer->get_error_message() );
+			}
+
+			$result = $consumer->regenerate_secret();
+
+			if ( is_wp_error( $consumer ) ) {
+				wp_die( $consumer->get_error_message() );
+			}
+
+			wp_safe_redirect( get_permalink( $consumer->ID ) );
+			break;
+	}
+});

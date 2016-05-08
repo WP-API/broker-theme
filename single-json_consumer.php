@@ -49,7 +49,7 @@
 			</td>
 			<td>
 				<code><?php echo esc_html( get_post_meta( get_the_id(), 'secret', true ) ) ?></code><br />
-				<a class="button" href="<?php echo wp_nonce_url( add_query_arg( 'ba-action', 'regenerate-secret' ), 'regenerate-secret' ) ?>">Regenerate Secret</a><br />
+				<a class="button" href="<?php echo wp_nonce_url( add_query_arg( array( 'ba-action' => 'regenerate-app-secret', 'consumer' => get_the_id() ) ), 'regenerate-secret' ) ?>">Regenerate Secret</a><br />
 				<span class="description">Warning: Regenerating the secret will invalidate all connections.</span>
 			</td>
 		</tr>

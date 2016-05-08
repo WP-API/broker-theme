@@ -160,3 +160,21 @@ form#setupform {
 .wp-signup-container > h2 {
     display: none;
 }
+
+.message {
+    padding: 15px;
+    border: 1px solid #333;
+    background: #eee;
+    font-weight: bold;
+    color: #fff;
+}
+
+.message.error {
+    border-color: #9A2323;
+    background: #DC3232;
+}
+
+.message.success {
+    border-color: #31843F;
+    background: #46B450;
+}

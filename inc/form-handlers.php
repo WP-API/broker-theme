@@ -67,7 +67,11 @@ function ba_add_application_form_handler( $data ) {
 function ba_edit_application_form_handler( $data ) {
 
 	check_admin_referer( 'ba-edit-application' );
-	global $ba_error_message;
+	global $ba_error_message, $ba_success_message;
+
+	if ( ! current_user_can( 'edit_application', absint( $data['application_id'] ) ) ) {
+		wp_die( 'You are not allowed to do this.' );
+	}
 
 	$consumer = WP_REST_OAuth1_Client::get( absint( $data['application_id'] ) );
 
@@ -88,6 +92,8 @@ function ba_edit_application_form_handler( $data ) {
 
 	if ( is_wp_error( $result ) ) {
 		$ba_error_message = $result->get_error_message();
+	} else {
+		$ba_success_message = 'Updated Application.';
 	}
 }
 
