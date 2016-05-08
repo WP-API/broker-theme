@@ -3,24 +3,27 @@
 <h1>Edit Profile</h1>
 
 <div class="content">
-	<form>
+	<form method="post">
 		<p>
 			<label>Name</label>
-			<input type="text" value="<?php echo esc_attr( $user->display_name ) ?>" required />
+			<input name="user_name" type="text" value="<?php echo esc_attr( $user->display_name ) ?>" required />
 		</p>
 		<p>
 			<label>Email Address</label>
-			<input type="email" value="<?php echo esc_attr( $user->user_email ) ?>" required />
+			<input name="user_email" type="email" value="<?php echo esc_attr( $user->user_email ) ?>" required />
 		</p>
 		<p>
 			<label>Change Password</label>
-			<input type="password" required />
+			<input name="user_pass" type="password" />
 			<span class="description">Only enter a new password if you want to change it.</span>
 		</p>
 
 		<p>
 			<input type="submit" value="Update Profile" />
 		</p>
+
+		<input type="hidden" name="ba-action" value="update-profile" />
+		<?php wp_nonce_field( 'ba-update-profile' ) ?>
 	</form>
 </div>
 

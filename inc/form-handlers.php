@@ -19,11 +19,26 @@ add_action( 'init', function() {
 		case 'add-application':
 			ba_add_application_form_handler( $data );
 			break;
+
+		case 'update-profile':
+			ba_update_profile_form_handler( $data );
+			break;
 	}
 });
 
-function ba_register_form_handler() {
+function ba_register_form_handler( $data ) {
 	check_admin_referer( 'ba-register' );
+
+	wpmu_signup_user(
+		sanitize_email( $data['user_email'] ),
+		sanitize_email( $data['user_email'] ),
+		array(
+			'display_name' => sanitize_text_field( $data['user_name'] )
+		)
+	);
+
+	global $ba_success_message;
+	$ba_success_message = 'Please check your email to verify your email address.';
 }
 
 function ba_add_application_form_handler( $data ) {
@@ -31,8 +46,8 @@ function ba_add_application_form_handler( $data ) {
 
 	// Create the consumer
 	$data = array(
-		'name' => wp_filter_post_kses( $data['application_name'] ),
-		'description' => wp_filter_post_kses( $data['application_description'] ),
+		'name' => wp_kses_post( $data['application_name'] ),
+		'description' => wp_kses_post( $data['application_description'] ),
 		'meta' => array(
 			'callback' => $data['application_callback_url'],
 		),
@@ -62,8 +77,8 @@ function ba_edit_application_form_handler( $data ) {
 
 	// Create the consumer
 	$data = array(
-		'name' => wp_filter_post_kses( $data['application_name'] ),
-		'description' => wp_filter_post_kses( $data['application_description'] ),
+		'name' => wp_kses_post( $data['application_name'] ),
+		'description' => wp_kses_post( $data['application_description'] ),
 		'meta' => array(
 			'callback' => $data['application_callback_url'],
 		),
@@ -73,5 +88,37 @@ function ba_edit_application_form_handler( $data ) {
 
 	if ( is_wp_error( $result ) ) {
 		$ba_error_message = $result->get_error_message();
+	}
+}
+
+function ba_update_profile_form_handler( $data ) {
+
+	global $ba_error_message, $ba_success_message;
+
+	check_admin_referer( 'ba-update-profile' );
+
+	if ( ! is_user_logged_in() ) {
+		wp_die( 'You are not logged in.' );
+	}
+
+	$update = wp_update_user( wp_slash( array(
+		'ID'           => get_current_user_id(),
+		'display_name' => sanitize_text_field( $data['user_name'] ),
+		'user_email'   => sanitize_email( $data['user_email'] ),
+		'user_pass'    => $data['user_pass'],
+	) ) );
+
+	if ( is_wp_error( $update ) ) {
+		$ba_error_message = $update->get_error_message();
+	} else {
+		$user = get_current_user_id();
+		global $current_user;
+		$current_user = null;
+		wp_set_current_user( $user ); // hack to update the global current user object.
+		$ba_success_message = 'Your details have been updated.';
+
+		if ( ! empty( $data['user_pass'] ) ) {
+			wp_set_auth_cookie( get_current_user_id(), false, is_ssl() );
+		}
 	}
 }
