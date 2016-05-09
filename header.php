@@ -8,7 +8,7 @@
 		<header>
 			<h2><img src="<?php echo get_stylesheet_directory_uri() ?>/images/wordpress-logo.png" width="25" /> <a href="<?php echo site_url() ?>">Application Registry</a></h2>
 			<div class="user-links">
-				<a href="http://v2.wp-api.org/">API Documenation</a>
+				<a href="http://v2.wp-api.org/">API Documentation</a>
 				<?php if ( is_user_logged_in() ) : ?>
 					<a href="<?php echo site_url( '/apps/' ) ?>">Apps</a>
 					<a href="<?php echo site_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a>
