@@ -10,8 +10,8 @@
 			<div class="user-links">
 				<a href="http://v2.wp-api.org/">API Documentation</a>
 				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo site_url( '/apps/' ) ?>">Apps</a>
-					<a href="<?php echo site_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a>
+					<a href="<?php echo home_url( '/apps/' ) ?>">Apps</a>
+					<a href="<?php echo home_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a>
 					<a href="<?php echo wp_logout_url( site_url() ) ?>">Log Out</a>
 				<?php else : ?>
 					<a href="<?php echo wp_login_url( site_url( '/apps/' ) ) ?>">Log In</a>
