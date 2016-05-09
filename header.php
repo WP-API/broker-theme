@@ -6,7 +6,11 @@
 	</head>
 	<body <?php body_class() ?>>
 		<header>
-			<h2><img src="<?php echo get_stylesheet_directory_uri() ?>/images/wordpress-logo.png" width="25" /> <a href="<?php echo site_url() ?>">Application Registry</a></h2>
+			<h2>
+				<img src="<?php echo get_stylesheet_directory_uri() ?>/images/wordpress-logo.png" width="25" />
+				<a href="<?php echo home_url() ?>">Application Registry</a>
+			</h2>
+
 			<div class="user-links">
 				<a href="http://v2.wp-api.org/">API Documentation</a>
 				<?php if ( is_user_logged_in() ) : ?>
