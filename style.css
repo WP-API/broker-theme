@@ -59,15 +59,16 @@ header h2 {
     font-size: 16px;
     line-height: 30px;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-header h2 img {
-    vertical-align: middle;
-    -webkit-filter: brightness(0) invert(1);
+header img {
+    margin-right: 0.1rem;
 }
 
 header a {
-    color: #fff;
+    color: inherit;
 }
 
 header .user-links a {
