@@ -65,7 +65,7 @@ add_action( 'parse_request', function( WP $wp ) {
 });
 
 add_filter( 'register_url', function() {
-	return site_url( '/register/' );
+	return home_url( '/register/' );
 } );
 
 add_filter( 'map_meta_cap', function( $caps, $cap, $user_id, $args ) {
