@@ -72,6 +72,13 @@ header a {
     color: inherit;
 }
 
+header .user-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
 header .user-links a {
     padding: 0 5px;
 }

@@ -11,17 +11,17 @@
 				<a href="<?php echo home_url() ?>">Application Registry</a>
 			</h2>
 
-			<div class="user-links">
-				<a href="http://v2.wp-api.org/">API Documentation</a>
+			<ul class="user-links">
+				<li><a href="http://v2.wp-api.org/">API Documentation</a></li>
 				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo home_url( '/apps/' ) ?>">Apps</a>
-					<a href="<?php echo home_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a>
-					<a href="<?php echo wp_logout_url( home_url() ) ?>">Log Out</a>
+					<li><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a></li>
+					<li><a href="<?php echo home_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a></li>
+					<li><a href="<?php echo wp_logout_url( home_url() ) ?>">Log Out</a></li>
 				<?php else : ?>
-					<a href="<?php echo wp_login_url( home_url( '/apps/' ) ) ?>">Log In</a>
-					<a href="<?php echo wp_registration_url(); ?> ">Register</a>
+					<li><a href="<?php echo wp_login_url( home_url( '/apps/' ) ) ?>">Log In</a></li>
+					<li><a href="<?php echo wp_registration_url(); ?> ">Register</a></li>
 				<?php endif ?>
-			</div>
+			</ul>
 		</header>
 		<div class="wrapper">
 			<?php if ( $ba_error_message ) : ?>
