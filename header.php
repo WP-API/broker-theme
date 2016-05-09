@@ -20,14 +20,14 @@
 			</div>
 		</header>
 		<div class="wrapper">
-			<?php if ( $ba_error_message ) : ?>
+			<?php if ( has_action( 'ba_error_message' ) ): ?>
 				<div class="message error">
-					<?php echo esc_html( $ba_error_message ); ?>
+					<?php do_action( 'ba_error_message' ) ?>
 				</div>
 			<?php endif ?>
 
-			<?php if ( $ba_success_message ) : ?>
+			<?php if ( has_action( 'ba_success_message' ) ): ?>
 				<div class="message success">
-					<?php echo esc_html( $ba_success_message ); ?>
+					<?php do_action( 'ba_success_message' ) ?>
 				</div>
 			<?php endif ?>

@@ -26,6 +26,18 @@ add_action( 'init', function() {
 	}
 });
 
+function ba_add_error( $message ) {
+	add_action( 'ba_error_message', function () use ( $message ) {
+		echo esc_html( $message );
+	});
+}
+
+function ba_add_success( $message ) {
+	add_action( 'ba_success_message', function () use ( $message ) {
+		echo esc_html( $message );
+	});
+}
+
 function ba_register_form_handler( $data ) {
 	check_admin_referer( 'ba-register' );
 
@@ -37,8 +49,7 @@ function ba_register_form_handler( $data ) {
 		)
 	);
 
-	global $ba_success_message;
-	$ba_success_message = 'Please check your email to verify your email address.';
+	ba_add_error( 'Please check your email to verify your email address.' );
 }
 
 function ba_add_application_form_handler( $data ) {
@@ -60,14 +71,12 @@ function ba_add_application_form_handler( $data ) {
 		exit;
 	}
 
-	global $ba_error_message;
-	$ba_error_message = $consumer->get_error_message();
+	ba_add_error( $consumer->get_error_message() );
 }
 
 function ba_edit_application_form_handler( $data ) {
 
 	check_admin_referer( 'ba-edit-application' );
-	global $ba_error_message, $ba_success_message;
 
 	if ( ! current_user_can( 'edit_application', absint( $data['application_id'] ) ) ) {
 		wp_die( 'You are not allowed to do this.' );
@@ -76,7 +85,8 @@ function ba_edit_application_form_handler( $data ) {
 	$consumer = WP_REST_OAuth1_Client::get( absint( $data['application_id'] ) );
 
 	if ( is_wp_error( $consumer ) ) {
-		return $ba_error_message = $consumer->get_error_message();
+		ba_add_error( $consumer->get_error_message() );
+		return $consumer->get_error_message();
 	}
 
 	// Create the consumer
@@ -91,15 +101,13 @@ function ba_edit_application_form_handler( $data ) {
 	$result = $consumer->update( $data );
 
 	if ( is_wp_error( $result ) ) {
-		$ba_error_message = $result->get_error_message();
+		ba_add_error( $result->get_error_message() );
 	} else {
-		$ba_success_message = 'Updated Application.';
+		ba_add_success( 'Updated Application.' );
 	}
 }
 
 function ba_update_profile_form_handler( $data ) {
-
-	global $ba_error_message, $ba_success_message;
 
 	check_admin_referer( 'ba-update-profile' );
 
@@ -115,16 +123,17 @@ function ba_update_profile_form_handler( $data ) {
 	) ) );
 
 	if ( is_wp_error( $update ) ) {
-		$ba_error_message = $update->get_error_message();
-	} else {
-		$user = get_current_user_id();
-		global $current_user;
-		$current_user = null;
-		wp_set_current_user( $user ); // hack to update the global current user object.
-		$ba_success_message = 'Your details have been updated.';
+		ba_add_error( $update->get_error_message() );
+		return false;
+	}
 
-		if ( ! empty( $data['user_pass'] ) ) {
-			wp_set_auth_cookie( get_current_user_id(), false, is_ssl() );
-		}
+	$user = get_current_user_id();
+	global $current_user;
+	$current_user = null;
+	wp_set_current_user( $user ); // hack to update the global current user object.
+	ba_add_success( 'Your details have been updated.' );
+
+	if ( ! empty( $data['user_pass'] ) ) {
+		wp_set_auth_cookie( get_current_user_id(), false, is_ssl() );
 	}
 }
