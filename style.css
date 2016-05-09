@@ -41,7 +41,8 @@ code {
 .content {
     background: #fff;
     border: 1px solid #D6DFE5;
-    padding: 20px
+    padding: 20px;
+    line-height: 1.4;
 }
 
 header {
