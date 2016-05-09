@@ -21,6 +21,6 @@
 <?php endif ?>
 
 <div class="add-new">
-	<a href="<?php echo site_url( '/apps/add-new/' ) ?>">Add New Application</a>
+	<a href="<?php echo home_url( '/apps/add-new/' ) ?>">Add New Application</a>
 </div>
 <?php get_footer() ?>

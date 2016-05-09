@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<h1><a href="<?php echo site_url( '/apps/' ) ?>">Apps</a> &rarr; Add New Application</h1>
+<h1><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a> &rarr; Add New Application</h1>
 
 <div class="content">
 

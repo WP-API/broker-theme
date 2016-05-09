@@ -1,6 +1,6 @@
 <?php get_header(); the_post(); global $post; ?>
 
-<h1><a href="<?php echo site_url( '/apps/' ) ?>">Apps</a> &rarr; <?php the_title() ?></h1>
+<h1><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a> &rarr; <?php the_title() ?></h1>
 
 <div class="content">
 
