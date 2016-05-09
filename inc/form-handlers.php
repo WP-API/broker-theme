@@ -2,7 +2,7 @@
 
 add_action( 'init', function() {
 
-	if ( ! $_POST['ba-action'] ) {
+	if ( empty( $_POST['ba-action'] ) ) {
 		return;
 	}
 
