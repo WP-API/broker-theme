@@ -79,8 +79,12 @@ header .user-links {
     display: flex;
 }
 
-header .user-links a {
-    padding: 0 5px;
+header .user-links li {
+    margin-left: 1rem;
+}
+
+header .user-links a:hover {
+    text-decoration: underline;
 }
 
 table.apps-list {
