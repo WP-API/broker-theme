@@ -20,11 +20,10 @@
 			<span class="description">Your application's callback URL. The callback passed with the request token must match the scheme, host, port, and path of this URL.</span>
 		</p>
 		<p>
-			<input type="submit" value="Save Application" />
-			<input type="submit" value="Delete Application" />
+			<button type="submit" name="ba-action" value="edit-application">Save Application</button>
+			<button type="submit" name="ba-action" value="delete-application">Delete Application</button>
 		</p>
 
-		<input type="hidden" name="ba-action" value="edit-application" />
 		<input type="hidden" name="application_id" value="<?php echo $post->ID ?>" />
 
 

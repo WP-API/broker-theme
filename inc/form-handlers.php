@@ -16,6 +16,10 @@ add_action( 'init', function() {
 			ba_edit_application_form_handler( $data );
 			break;
 
+		case 'delete-application':
+			ba_delete_application_form_handler( $data );
+			break;
+
 		case 'add-application':
 			ba_add_application_form_handler( $data );
 			break;
@@ -105,6 +109,32 @@ function ba_edit_application_form_handler( $data ) {
 	} else {
 		ba_add_success( 'Updated Application.' );
 	}
+}
+
+function ba_delete_application_form_handler( $data ) {
+	check_admin_referer( 'ba-edit-application' );
+
+	if ( ! current_user_can( 'edit_json_consumer', absint( $data['application_id'] ) ) ) {
+		wp_die( 'You are not allowed to do this.' );
+	}
+
+	$consumer = WP_REST_OAuth1_Client::get( absint( $data['application_id'] ) );
+
+	if ( is_wp_error( $consumer ) ) {
+		ba_add_error( $consumer->get_error_message() );
+		return $consumer->get_error_message();
+	}
+
+	$result = $consumer->delete();
+
+	if ( is_wp_error( $result ) ) {
+		ba_add_error( $result->get_error_message() );
+		return $result->get_error_message();
+	}
+
+	// Deleted, go back to apps list
+	wp_safe_redirect( home_url( '/apps/' ) );
+	exit;
 }
 
 function ba_update_profile_form_handler( $data ) {
