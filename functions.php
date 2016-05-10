@@ -9,6 +9,8 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'broker-authentication', get_stylesheet_directory_uri() . '/style.css' );
 });
 
+register_nav_menu( 'masthead-links', 'Additional Links for Homepage Masthead' );
+
 /**
  * Make the json_consumer post type viewable on the front end.
  */

@@ -213,4 +213,7 @@ form#setupform {
 
 .masthead .additional {
     font-size: 0.8rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 1em 0;
 }

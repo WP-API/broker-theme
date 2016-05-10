@@ -12,9 +12,12 @@
 			<?php endif ?>
 		</nav>
 
-		<p class="additional">
-			<a href="">Information for Application Developers</a>
-		</p>
+		<?php wp_nav_menu( array(
+			'menu'        => 'masthead-links',
+			'fallback_cb' => false,
+			'container'   => false,
+			'menu_class'  => 'additional',
+		)) ?>
 	</div>
 
 <div class="content">
