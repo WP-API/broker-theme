@@ -1,4 +1,4 @@
-<?php global $ba_error_message, $ba_success_message ?><!doctype html>
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8" />
