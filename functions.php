@@ -4,7 +4,10 @@ require_once( __DIR__ . '/inc/form-handlers.php' );
 
 add_theme_support( 'title-tag' );
 
-show_admin_bar( false );
+add_action( 'init', function () {
+	show_admin_bar( current_user_can( 'manage_options' ) );
+});
+
 add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'broker-authentication', get_stylesheet_directory_uri() . '/style.css' );
 });
