@@ -78,7 +78,7 @@ function ba_edit_application_form_handler( $data ) {
 
 	check_admin_referer( 'ba-edit-application' );
 
-	if ( ! current_user_can( 'edit_application', absint( $data['application_id'] ) ) ) {
+	if ( ! current_user_can( 'edit_json_consumer', absint( $data['application_id'] ) ) ) {
 		wp_die( 'You are not allowed to do this.' );
 	}
 
