@@ -83,6 +83,11 @@ header .user-links li {
     margin-left: 1rem;
 }
 
+header .user-links li:nth-child(3) {
+    border-right: 2px solid rgba(255,255,255,.3);
+    padding-right: 1rem;
+}
+
 header .user-links a:hover {
     text-decoration: underline;
 }
@@ -216,4 +221,10 @@ form#setupform {
     list-style-type: none;
     padding: 0;
     margin: 1em 0;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
 }

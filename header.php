@@ -11,7 +11,8 @@
 			</h2>
 
 			<ul class="user-links">
-				<li><a href="http://v2.wp-api.org/">API Documentation</a></li>
+				<li><a href="<?php echo home_url( '/spec/' ) ?>">Specification</a></li>
+				<li><a href="http://v2.wp-api.org/">Docs</a></li>
 				<li><a href="https://demo.wp-api.org/">Console</a></li>
 				<?php if ( is_user_logged_in() ) : ?>
 					<li><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a></li>
