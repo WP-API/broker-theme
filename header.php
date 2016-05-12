@@ -7,8 +7,7 @@
 	<body <?php body_class() ?>>
 		<header>
 			<h2>
-				<img src="<?php echo get_stylesheet_directory_uri() ?>/images/wordpress-logo.png" width="25" />
-				<a href="<?php echo home_url() ?>">Application Registry</a>
+				<a href="<?php echo home_url() ?>">WP REST API Application Registry</a>
 			</h2>
 
 			<ul class="user-links">
