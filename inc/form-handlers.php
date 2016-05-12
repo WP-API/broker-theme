@@ -30,18 +30,6 @@ add_action( 'init', function() {
 	}
 });
 
-function ba_add_error( $message ) {
-	add_action( 'ba_error_message', function () use ( $message ) {
-		echo esc_html( $message );
-	});
-}
-
-function ba_add_success( $message ) {
-	add_action( 'ba_success_message', function () use ( $message ) {
-		echo esc_html( $message );
-	});
-}
-
 function ba_register_form_handler( $data ) {
 	check_admin_referer( 'ba-register' );
 
@@ -53,7 +41,7 @@ function ba_register_form_handler( $data ) {
 		)
 	);
 
-	ba_add_error( 'Please check your email to verify your email address.' );
+	ba_add_success( 'Please check your email to verify your email address.' );
 }
 
 function ba_add_application_form_handler( $data ) {
