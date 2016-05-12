@@ -12,6 +12,7 @@
 
 			<ul class="user-links">
 				<li><a href="http://v2.wp-api.org/">API Documentation</a></li>
+				<li><a href="https://demo.wp-api.org/">Console</a></li>
 				<?php if ( is_user_logged_in() ) : ?>
 					<li><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a></li>
 					<li><a href="<?php echo home_url( '/profile/' ) ?>"><?php echo esc_html( wp_get_current_user()->display_name ) ?></a></li>
