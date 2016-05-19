@@ -189,7 +189,6 @@ add_filter( 'update_welcome_user_email', function( $email, $user_id, $password, 
 		array( $user->display_name, $user->user_email ),
 		$email
 	);
-	var_dump($meta);
 	return $email;
 }, 10, 4 );
 
