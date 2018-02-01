@@ -37,8 +37,7 @@ function alter_home_query( WP_Query $query ) {
  * @param WP_Query $query Query to alter.
  */
 function set_author_param( WP_Query $query ) {
-	$author = $query->get( 'author' );
-	var_dump( $author, $query );
+	$author = $query->get( AUTHOR_VAR );
 	if ( $author === 'me' ) {
 		$query->set( 'author', get_current_user_id() );
 	}
