@@ -24,6 +24,10 @@ export default function AppCard( props ) {
 			<div className="AppCard-content">
 				<h2>
 					<Link to={ `/apps/${ app.id }/` }>{ app.title.rendered }</Link>
+
+					{ app.status === 'draft' ?
+						<span className="AppCard-draft">Draft</span>
+					: null }
 				</h2>
 
 				{ /*
