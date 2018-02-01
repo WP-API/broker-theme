@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Link from './Link';
-import { logOut } from './lib/actions';
 
 import './PageHeader.css';
 
@@ -31,7 +30,6 @@ function PageHeader( props ) {
 					<React.Fragment>
 						<li><Link href="/apps/mine/">My Apps</Link></li>
 						<li><Link href="/profile/">{ user.name }</Link></li>
-						<li><a onClick={ () => props.onLogOut() }>Log Out</a></li>
 					</React.Fragment>
 				:
 					<React.Fragment>
@@ -50,13 +48,4 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onLogOut: () => dispatch( logOut() ),
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)( PageHeader );
+export default connect( mapStateToProps )( PageHeader );

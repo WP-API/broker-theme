@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Button from '../Button';
 import Form from '../Form';
 import ContentWrapper from '../ContentWrapper';
+import { logOut } from '../lib/actions';
 
 const Profile = props => {
 	const { user } = props;
@@ -15,6 +16,7 @@ const Profile = props => {
 
 	return <ContentWrapper>
 		<h1>Edit Profile</h1>
+		<Button onClick={ () => props.onLogOut() }>Log Out</Button>
 
 		<Form>
 			<p>
@@ -43,6 +45,7 @@ const Profile = props => {
 
 			<Button submit>Update Profile</Button>
 		</Form>
+
 	</ContentWrapper>;
 }
 
@@ -52,6 +55,13 @@ const mapStateToProps = state => {
 	};
 };
 
+const mapDispatchToProps = dispatch => {
+	return {
+		onLogOut: () => dispatch( logOut() ),
+	};
+};
+
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	mapDispatchToProps
 )( Profile );
