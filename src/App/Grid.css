@@ -6,4 +6,5 @@
 
 .AppGrid > .AppCard {
 	width: 48%;
+	margin-bottom: 1em;
 }
