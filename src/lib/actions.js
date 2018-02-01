@@ -2,7 +2,7 @@
 // import { API_NONCE, API_ROOT, fetchOptions } from './lib/api';
 // import { fetchArchive } from './lib/archives';
 // import { getPageByPath } from './lib/pages';
-import { apps, pages } from './lib/types';
+import { apps, pages } from './types';
 
 // export const LOAD_PAGE = 'LOAD_PAGE';
 // export const LOAD_PAGE_ERROR = 'LOAD_PAGE_ERROR';

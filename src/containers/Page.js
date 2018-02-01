@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 
 import Page from '../Page';
-import { getPage } from '../actions';
-// import { normalizePath, pathForPage } from '../lib/pages';
-
-import { pages } from '../lib/types';
+import { getPage } from '../lib/actions';
+import { normalizePath, pages } from '../lib/types';
 
 const mapStateToProps = ( state, props ) => {
 	const { path } = props.match.params;

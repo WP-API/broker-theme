@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { createApp } from '../actions';
 import NotFound from '../NotFound';
 import AppSettings from './Details/AppSettings';
 import DisplaySettings from './Details/DisplaySettings';
+import { createApp } from '../lib/actions';
 
 import './Create.css';
 

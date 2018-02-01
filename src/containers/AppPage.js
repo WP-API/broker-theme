@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import AppDetails from '../App/Details';
-import { getApp, getAppForEdit, updateApp } from '../actions';
+import { getApp, getAppForEdit, updateApp } from '../lib/actions';
 import { apps } from '../lib/types';
 
 const getId = props => parseInt( props.match.params.id, 10 );
