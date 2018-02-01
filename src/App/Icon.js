@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './AppIcon.css';
+import './Icon.css';
 
 export default function AppIcon( props ) {
 	const { app } = props;

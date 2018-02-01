@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AppIcon from './AppIcon';
+import AppIcon from './Icon';
 
-import './AppCard.css';
+import './Card.css';
 
 /*const rating = num => {
 	let content = [];

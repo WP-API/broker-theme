@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AppGrid from './AppGrid';
-import AppGridBonus from './AppGridBonus';
+import AppGrid from './App/Grid';
+import AppGridAction from './App/GridAction';
 import Link from './Link';
 import NotFound from './NotFound';
 import withArchive from './lib/withArchive';
@@ -24,7 +24,7 @@ const MyApps = props => {
 		:
 			<p>No apps found.</p>
 		}
-		<AppGridBonus><Link href="/apps/new/">Create new app</Link></AppGridBonus>
+		<AppGridAction><Link href="/apps/new/">Create new app</Link></AppGridAction>
 	</div>;
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AppCard from './AppCard';
+import AppCard from './Card';
 
-import './AppGrid.css';
+import './Grid.css';
 
 export default function AppGrid( props ) {
 	return <div className="AppGrid">

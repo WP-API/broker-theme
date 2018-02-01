@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import withArchive from './lib/withArchive';
 
-import AppGrid from './AppGrid';
-import AppGridBonus from './AppGridBonus';
+import AppGrid from './App/Grid';
+import AppGridAction from './App/GridAction';
 import Developers from './Home/Developers';
 import Masthead from './Home/Masthead';
 import NotFound from './NotFound';
@@ -36,7 +36,7 @@ const Home = props => {
 
 		<h2>Newest Apps</h2>
 		<AppGrid apps={ posts } />
-		<AppGridBonus><a href="#">See all</a></AppGridBonus>
+		<AppGridAction><a href="#">See all</a></AppGridAction>
 
 		<Developers user={ user } />
 	</div>;

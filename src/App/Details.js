@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
-import AppIcon from '../AppIcon';
+import AppIcon from './Icon';
 import NotFound from '../NotFound';
 import UploadOverlay from '../UploadOverlay';
 import AppSettings from './Details/AppSettings';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppCard from '../../AppCard';
+import AppCard from '../Card';
 import Button from '../../Button';
 import Editor from '../../Editor';
 import Form from '../../Form';

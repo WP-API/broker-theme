@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AppGrid from './AppGrid';
 import Home from './Home';
 import NotFound from './NotFound';
+import AppGrid from './App/Grid';
 import withArchive from './lib/withArchive';
 
 class Archive extends React.Component {
