@@ -25,14 +25,13 @@ const canEdit = ( user, app ) => {
 const mapStateToProps = ( state, props ) => {
 	const id = getId( props );
 	const app = apps.getSingle( state.apps, id );
-	// const app = state.apps.posts.find( post => post.id === id );
 
 	return {
 		action:  props.match.params.action,
 		app:     app,
 		canEdit: app ? canEdit( state.user, app ) : null,
-		loading: state.apps.loadingSingle === id,
-		saving:  state.apps.saving === id,
+		loading: apps.isPostLoading( state.apps, id ),
+		saving:  apps.isPostSaving( state.apps, id ),
 		user:    state.user,
 	};
 };

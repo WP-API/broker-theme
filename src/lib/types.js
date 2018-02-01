@@ -34,19 +34,21 @@ export const pages = new handler( {
 // Add our extra tools.
 export const normalizePath = path => path.replace( /^\/+|\/+$/g, '' );
 const pathForPage = page => normalizePath( page.link.substr( SITE_HOME.length ) );
+pages.archiveForPath = path => `pages/${ normalizePath( path ) }`;
 pages.fetchPageByPath = path => {
 	// Query by slug for the final path component.
 	const normalized = normalizePath( path );
 	const components = normalized.split( '/' );
-	pages.registerArchive( `pages/${ path }`, {
+	const id = pages.archiveForPath( path );
+	pages.registerArchive( id, {
 		slug: components.slice( -1 )[0],
 	} );
 
-	return pages.fetchArchive( `pages/${ path }` );
+	return pages.fetchArchive( id );
 };
 pages.getPageByPath = ( state, path ) => {
 	const normalized = normalizePath( path );
-	const allMatching = pages.getArchive( state.pages, `pages/${ normalized }` );
+	const allMatching = pages.getArchive( state.pages, pages.archiveForPath( normalized ) );
 	if ( ! allMatching ) {
 		return null;
 	}

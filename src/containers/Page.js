@@ -6,14 +6,13 @@ import { normalizePath, pages } from '../lib/types';
 
 const mapStateToProps = ( state, props ) => {
 	const { path } = props.match.params;
-	// const normalized = normalizePath( path );
 	const page = pages.getPageByPath( state, path );
-	// const page = state.pages.posts.find( page => pathForPage( page ) === normalized );
+	const id = pages.archiveForPath( path );
 
 	return {
 		page,
 		path,
-		loading: state.pages.loading === path,
+		loading: pages.isArchiveLoading( state.pages, id ),
 	};
 };
 
