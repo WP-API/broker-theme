@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
 import AppIcon from './Icon';
+import ContentWrapper from '../ContentWrapper';
 import NotFound from '../NotFound';
 import UploadOverlay from '../UploadOverlay';
 import AppSettings from './Details/AppSettings';
@@ -45,7 +46,7 @@ export default class AppDetails extends React.Component {
 		const url = `/apps/${ app.id }`;
 		const loadingEditable = needsEditable( this.props );
 
-		return <article className="AppDetails">
+		return <ContentWrapper className="AppDetails">
 			{/*
 			<div className="AppDetails-banner">
 				<img
@@ -134,6 +135,6 @@ export default class AppDetails extends React.Component {
 					/>
 				</Route>
 			</Switch>
-		</article>
+		</ContentWrapper>
 	}
 }

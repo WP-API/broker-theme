@@ -1,8 +1,7 @@
 import React from 'react';
 
+import ContentWrapper from './ContentWrapper';
 import NotFound from './NotFound';
-
-import './Page.css';
 
 export default class Page extends React.Component {
 	componentWillMount() {
@@ -28,13 +27,13 @@ export default class Page extends React.Component {
 			return <NotFound />;
 		}
 
-		return <div className="Page">
+		return <ContentWrapper>
 			<h1
 				dangerouslySetInnerHTML={ { __html: page.title.rendered } }
 			/>
 			<div
 				dangerouslySetInnerHTML={ { __html: page.content.rendered } }
 			/>
-		</div>;
+		</ContentWrapper>;
 	}
 }
