@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import Main from './Main';
 import rootReducer from './lib/reducers';
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 
@@ -42,7 +42,9 @@ const render = Root => ReactDOM.render(
 
 render( Main );
 
-// registerServiceWorker();
+if ( process.env.NODE_ENV === 'production' ) {
+	registerServiceWorker();
+}
 
 if ( module.hot ) {
 	module.hot.accept( './Main', () => import( './Main' ).then( nextModule => {
