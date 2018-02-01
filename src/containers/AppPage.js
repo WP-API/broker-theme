@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AppDetails from '../AppDetails';
+import AppDetails from '../App/Details';
 import { getApp, getAppForEdit, updateApp } from '../actions';
 import { apps } from '../lib/types';
 

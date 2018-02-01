@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Main.css';
 
-import Link from '../Link';
+import Link from '../../Link';
 
 export default function Main( props ) {
 	const { app, canEdit } = props;

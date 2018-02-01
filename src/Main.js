@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import PageHeader from './PageHeader';
 import AppPage from './containers/AppPage';
-import AppCreate from './AppCreate';
+import AppCreate from './App/Create';
 import Home from './Home';
 import MyApps from './MyApps';
 import Page from './containers/Page';

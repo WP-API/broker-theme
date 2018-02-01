@@ -1,10 +1,10 @@
 import React from 'react';
 
-import AppCard from '../AppCard';
-import Button from '../Button';
-import Editor from '../Editor';
-import Form from '../Form';
-import InputList from '../Form/InputList';
+import AppCard from '../../AppCard';
+import Button from '../../Button';
+import Editor from '../../Editor';
+import Form from '../../Form';
+import InputList from '../../Form/InputList';
 
 import './AppSettings.css';
 

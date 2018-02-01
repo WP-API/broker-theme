@@ -1,16 +1,16 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
-import AppIcon from './AppIcon';
-import NotFound from './NotFound';
-import UploadOverlay from './UploadOverlay';
-import AppSettings from './App/AppSettings';
-import VisibilitySettings from './App/VisibilitySettings';
-import DisplaySettings from './App/DisplaySettings';
-import Main from './App/Main';
-import Loading from './App/Loading';
+import AppIcon from '../AppIcon';
+import NotFound from '../NotFound';
+import UploadOverlay from '../UploadOverlay';
+import AppSettings from './Details/AppSettings';
+import VisibilitySettings from './Details/VisibilitySettings';
+import DisplaySettings from './Details/DisplaySettings';
+import Main from './Details/Main';
+import Loading from './Details/Loading';
 
-import './AppDetails.css';
+import './Details.css';
 
 const needsEditable = props => ! props.loading && props.canEdit && ! ( 'raw' in props.app.content ) && props.action !== undefined;
 

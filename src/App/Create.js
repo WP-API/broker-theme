@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { createApp } from './actions';
-import NotFound from './NotFound';
-import AppSettings from './App/AppSettings';
-import DisplaySettings from './App/DisplaySettings';
+import { createApp } from '../actions';
+import NotFound from '../NotFound';
+import AppSettings from './Details/AppSettings';
+import DisplaySettings from './Details/DisplaySettings';
 
-import './AppCreate.css';
+import './Create.css';
 
 class AppCreate extends React.Component {
 	constructor( props ) {
