@@ -8,6 +8,8 @@ import Home from './Home';
 import MyApps from './MyApps';
 import Page from './containers/Page';
 import NotFound from './NotFound';
+import Login from './User/Login';
+import Profile from './User/Profile';
 
 export default function Main( props ) {
 	return <React.Fragment>
@@ -28,6 +30,16 @@ export default function Main( props ) {
 				<Route
 					component={ AppPage }
 					path="/apps/:id/:action?"
+				/>
+
+				<Route
+					component={ Login }
+					path="/login"
+				/>
+
+				<Route
+					component={ Profile }
+					path="/profile"
 				/>
 
 				<Route
