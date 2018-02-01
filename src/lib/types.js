@@ -16,7 +16,7 @@ export const apps = new handler( {
 apps.registerArchive( '', {} );
 apps.registerArchive( 'apps/mine', state => {
 	return {
-		author: state.user.id,
+		author: state.user.data ? state.user.data.id : 0,
 		orderby: 'title',
 		status: 'any',
 	};

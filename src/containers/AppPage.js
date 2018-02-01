@@ -29,10 +29,10 @@ const mapStateToProps = ( state, props ) => {
 	return {
 		action:  props.match.params.action,
 		app:     app,
-		canEdit: app ? canEdit( state.user, app ) : null,
+		canEdit: app ? canEdit( state.user.data, app ) : null,
 		loading: apps.isPostLoading( state.apps, id ),
 		saving:  apps.isPostSaving( state.apps, id ),
-		user:    state.user,
+		user:    state.user.data,
 	};
 };
 

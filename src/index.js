@@ -19,7 +19,10 @@ const initialState = {
 	pages: {
 		posts: window.AppRegistryData.posts.filter( post => post.type === 'pages' ),
 	},
-	user: window.AppRegistryData.user,
+	user: {
+		data:  window.AppRegistryData.user,
+		nonce: window.AppRegistryData.site.nonce,
+	}
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
