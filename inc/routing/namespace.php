@@ -40,6 +40,7 @@ function set_author_param( WP_Query $query ) {
 	$author = $query->get( AUTHOR_VAR );
 	if ( $author === 'me' ) {
 		$query->set( 'author', get_current_user_id() );
+		$query->set( 'post_status', 'any' );
 	}
 }
 
