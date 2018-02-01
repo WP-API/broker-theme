@@ -1,0 +1,71 @@
+.AppDetails {
+	background: #fff;
+	padding: 10px;
+}
+
+.AppDetails-banner img {
+	width: 100%;
+	height: auto;
+}
+
+.AppDetails > header {
+	margin: 1em 0;
+	display: flex;
+	align-items: baseline;
+}
+
+.AppDetails-title {
+	flex-grow: 1;
+	display: flex;
+	align-items: baseline;
+}
+
+.AppDetails-title h1 {
+	margin: 0 0 0.25em;
+}
+
+.AppDetails-title .AppIcon {
+	align-self: flex-start;
+	margin-right: 1em;
+}
+
+.AppDetails-byline {
+	margin: 0 0 0.25em;
+}
+
+.AppDetails-subnav {
+	font-size: 0.7778em;
+}
+
+.AppDetails-subnav {
+	border-bottom: 2px solid #edeff0;
+}
+
+.AppDetails-subnav ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.AppDetails-subnav a {
+	display: block;
+	padding: 0.5em 1em;
+	margin-right: 0.25em;
+	margin-bottom: -2px;
+	border: 2px solid transparent;
+}
+
+.AppDetails-subnav a:hover {
+	background: #f3f4f5;
+	border-bottom-color: #edeff0;
+}
+
+.AppDetails-subnav a.active {
+	border-color: #edeff0;
+	border-bottom-color: #fff;
+}
+
+.AppDetails-banner, .AppDetails .AppIcon {
+	position: relative;
+}

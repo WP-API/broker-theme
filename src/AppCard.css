@@ -1,0 +1,36 @@
+.AppCard {
+	background: #fff;
+	padding: 1em;
+
+	font-size: 0.8rem;
+}
+
+.AppCard-main {
+	display: flex;
+}
+
+.AppCard .AppIcon {
+	margin-right: 1em;
+}
+
+.AppCard h2 {
+	margin: 0 0 0.5em;
+	font-size: 1rem;
+}
+
+.AppCard-rating {
+	color: #ffb900;
+}
+
+.AppCard footer {
+	font-size: 0.75rem;
+	margin: 1em 0 0;
+}
+
+.AppCard footer p {
+	margin: 0.5em 0;
+}
+
+.AppCard footer i {
+	color: #ccd0d4;
+}

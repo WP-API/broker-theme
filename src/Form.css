@@ -1,0 +1,82 @@
+.Form > label,
+.Form > div {
+	display: flex;
+	align-items: top;
+	margin-bottom: 1.5em;
+}
+
+.Form > label > :first-child,
+.Form > div > :first-child {
+	width: 20%;
+	flex-shrink: 0;
+	font-weight: bold;
+	color: #606a73;
+}
+
+.Form > label > :last-child,
+.Form > div > :last-child {
+	flex-grow: 1;
+}
+
+.Form label {
+	display: block;
+	margin: 0.25em 0;
+}
+
+.Form > label,
+.Form > div > label {
+	display: block;
+}
+
+.Form .description {
+	font-size: 0.7222em;
+	/*line-height: 1.6;*/
+	color: #8f98a1;
+	padding: 5px;
+	display: block;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="url"],
+form textarea {
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #D3DCE4;
+	font-size: 13px;
+}
+
+.Form textarea {
+	resize: vertical;
+	width: 100%;
+}
+
+form input[type="checkbox"],
+form input[type="radio"] {
+	margin-right: 1em;
+}
+
+form input[type="submit"],
+form button[type="submit"],
+.Button {
+	padding: 10px;
+	border-radius: 2px;
+	font-weight: bold;
+	font-size: 15px;
+	color: #333;
+	border: #C0CED8 1px solid;
+	border-bottom-width: 2px;
+	background: #F1F4F6;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover,
+form button[type="submit"]:hover,
+.Button:hover {
+	background: RGB(0,115,170);
+	color: #fff;
+	border-color: #006C9B;
+}

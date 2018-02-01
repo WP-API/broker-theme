@@ -1,0 +1,23 @@
+.AppGridBonus {
+	background: #fff;
+	width: 48%;
+}
+.AppGridBonus a {
+	padding: 1em;
+	display: block;
+	position: relative;
+}
+.AppGridBonus a:after {
+	display: flex;
+	align-items: baseline;
+	content: "→";
+	position: absolute;
+	right: 0.5em;
+	top: 0;
+	bottom: 0;
+	font-size: 2em;
+	transition: transform 200ms;
+}
+.AppGridBonus a:hover:after {
+	transform: translateX(10px);
+}

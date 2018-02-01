@@ -1,0 +1,16 @@
+.Developers nav {
+	margin-top: 1rem;
+}
+
+.Developers nav a {
+	/*background: rgb(0,160,210);*/
+	background: #00a0d2;
+	color: #fff;
+	padding: 1rem;
+	display: inline-block;
+}
+
+.Developers nav a:hover {
+	background: rgba(0, 160, 210, 0.8);
+	color: #fff;
+}

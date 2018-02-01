@@ -1,0 +1,52 @@
+.UploadOverlay {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.UploadOverlay.dropping {
+	outline: 2px dashed #b4b9be;
+	border-radius: 3px;
+}
+
+.UploadOverlay.dropping:before {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	padding: 0 1em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	text-align: center;
+	content: "Drop to upload";
+	font-size: 1rem;
+	color: #b4b9be;
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.UploadOverlay.dropping label {
+	opacity: 0;
+}
+
+.UploadOverlay label {
+	position: absolute;
+	display: block;
+	top: 0;
+	right: 0;
+	padding: 2px;
+	background: rgba( 255, 255, 255, 0.6 );
+	font-size: 16px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.UploadOverlay input[type="file"] {
+	display: none;
+}

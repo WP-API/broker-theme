@@ -1,0 +1,8 @@
+.VisibilitySettings-checklist {
+	list-style: none;
+	padding: 0 0 0 25px;
+}
+.VisibilitySettings-checklist span {
+	margin-left: -25px;
+	margin-right: 7px;
+}

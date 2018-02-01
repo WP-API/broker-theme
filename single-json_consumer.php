@@ -2,6 +2,11 @@
 
 <h1><a href="<?php echo home_url( '/apps/' ) ?>">Apps</a> &rarr; <?php the_title() ?></h1>
 
+<div class="message error">
+	<p><strong>Warning:</strong> This legacy application will cease to be usable after <strong>Dec 1, 2018</strong>.</p>
+	<p>See <a href="">the migration guide</a> for information on how to migrate your existing apps.</p>
+</div>
+
 <div class="content">
 
 	<form method="post">
@@ -31,7 +36,7 @@
 	</form>
 </div>
 
-<div class="oauth-credentials">
+<div class="content oauth-credentials">
 	<h2>OAuth Credentials</h2>
 	<table>
 		<tr>

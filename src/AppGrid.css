@@ -1,0 +1,9 @@
+.AppGrid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.AppGrid > .AppCard {
+	width: 48%;
+}

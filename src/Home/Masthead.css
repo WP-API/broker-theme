@@ -1,0 +1,59 @@
+.Masthead {
+	background: #0073aa;
+	color: #fff;
+	position: relative;
+	font-size: 1.2rem;
+	line-height: 1.4;
+	text-align: center;
+	margin-top: -30px;
+	margin-bottom: 3rem;
+	padding: 2rem 0;
+}
+
+.Masthead:before {
+	content: " ";
+	display: block;
+	position: absolute;
+	z-index: -1;
+	margin-left: -50vw;
+	top: 0;
+	left: 50%;
+	width: 100vw;
+	height: 100%;
+	background: #0073aa;
+}
+
+.Masthead .additional {
+	font-size: 0.8rem;
+	list-style-type: none;
+	padding: 0;
+	margin: 1em 0;
+}
+
+.Masthead-search {
+	display: flex;
+	justify-content: center;
+}
+
+.Masthead-search input {
+	font-size: 1rem;
+	line-height: 1.5;
+	padding: 0.5rem 3rem 0.5rem 0.5rem;
+	width: 25rem;
+	border: none;
+}
+
+.Masthead-search button[type="submit"] {
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 0;
+	margin-left: -2.5rem;
+	border: none;
+	border-radius: 0;
+	background: transparent;
+}
+
+.Masthead-search button[type="submit"]:hover,
+.Masthead-search button[type="submit"]:active {
+	background: #00a0d2;
+}

@@ -1,8 +1,21 @@
-<?php get_header(); the_post(); ?>
+<?php get_header() ?>
 
+<div class="Home">
+	<div class="Masthead">
+		<p>Unlock the power of the WordPress REST API.</p>
 
-	<div class="masthead">
-		<p>This site is a central application registry (&ldquo;broker&rdquo;) for WordPress REST API applications using OAuth 1.</p>
+		<form class="Masthead-search">
+			<input
+				placeholder="Find an app…"
+				type="search"
+			/>
+			<button
+				type="submit"
+			>
+				<i class="dashicons dashicons-search"></i>
+				<span class="screen-reader-text">Search</span>
+			</button>
+		</form>
 
 		<nav>
 			<?php if ( is_user_logged_in() ) : ?>
@@ -20,8 +33,26 @@
 		)) ?>
 	</div>
 
-<div class="content">
-	<?php the_content() ?>
+	<h2>Featured Apps</h2>
+	<div class="AppGrid">
+		<?php
+
+		// Loop the sticky apps.
+		while ( have_posts() ) {
+			the_post();
+			if ( ! is_sticky() ) {
+				break;
+			}
+
+			get_template_part( 'parts/app-card' );
+		}
+
+		?>
+	</div>
+
+	<h2>Newest Apps</h2>
+	<?php get_template_part( 'parts/app-grid' ) ?>
+	<a href="#">See all</a>
 </div>
 
 <?php get_footer() ?>
