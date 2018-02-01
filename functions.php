@@ -6,6 +6,7 @@ require __DIR__ . '/legacy/oauth1.php';
 
 require __DIR__ . '/inc/api/namespace.php';
 require __DIR__ . '/inc/api/class-app-controller.php';
+require __DIR__ . '/inc/api/class-authentication-controller.php';
 require __DIR__ . '/inc/namespace.php';
 require __DIR__ . '/inc/data/class-array-walker-nav-menu.php';
 require __DIR__ . '/inc/data/namespace.php';

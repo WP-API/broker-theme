@@ -3,6 +3,7 @@
 namespace AppRegistry\Data;
 
 use AppRegistry\API\App_Controller;
+use AppRegistry\API\Authentication_Controller;
 use WP_REST_Posts_Controller;
 use WP_REST_Request;
 
@@ -18,6 +19,7 @@ function get_script_data() {
 			'home'     => home_url(),
 			'api'      => rest_url(),
 			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'auth_nonce' => Authentication_Controller::get_nonce(),
 			'login'    => wp_login_url( '/' ),
 			'register' => wp_registration_url(),
 			'menus' => [

@@ -8,6 +8,7 @@ use WP_REST_Request;
 
 function bootstrap() {
 	add_filter( 'register_post_type_args', __NAMESPACE__ . '\\alter_post_type', 10, 2 );
+	add_action( 'rest_api_init', __NAMESPACE__ . '\\register_controllers' );
 	add_action( 'rest_api_init', __NAMESPACE__ . '\\register_fields' );
 }
 
@@ -39,6 +40,14 @@ function alter_post_type( $args, $post_type ) {
 	$args['supports'][] = 'thumbnail';
 
 	return $args;
+}
+
+/**
+ * Register custom controllers.
+ */
+function register_controllers() {
+	$auth_controller = new Authentication_Controller();
+	$auth_controller->register_routes();
 }
 
 /**
