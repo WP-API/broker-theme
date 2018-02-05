@@ -27,6 +27,16 @@ const parseResponse = resp => {
 	} );
 };
 
+const mergePosts = ( existing, next ) => {
+	// Remove any existing app so we can replace.
+	const newIds = next.map( post => post.id );
+	const deduplicated = existing.filter( post => newIds.indexOf( post.id ) === -1 );
+	return [
+		...deduplicated,
+		...next,
+	];
+};
+
 export default class Handler {
 	constructor( options ) {
 		this.url = options.url;
@@ -314,10 +324,7 @@ export default class Handler {
 				};
 
 			case this.actions.archiveSuccess: {
-				const { posts } = state;
-
 				const ids = action.results.map( post => post.id );
-				const deduplicated = ( posts || [] ).filter( post => ids.indexOf( post.id ) === -1 );
 				return {
 					...state,
 					loadingArchive: false,
@@ -325,10 +332,7 @@ export default class Handler {
 						...state.archives,
 						[ action.id ]: ids,
 					},
-					posts: [
-						...deduplicated,
-						...action.results,
-					],
+					posts: mergePosts( state.posts, action.results ),
 				};
 			}
 
@@ -346,16 +350,10 @@ export default class Handler {
 				};
 
 			case this.actions.getSuccess: {
-				const { posts } = state;
-				// Remove any existing app so we can replace.
-				const existing = ( posts || [] ).filter( post => post.id !== action.data.id );
 				return {
 					...state,
 					loadingPost: false,
-					posts: [
-						...existing,
-						action.data,
-					],
+					posts: mergePosts( state.posts, [ action.data ] ),
 				};
 			}
 
@@ -380,10 +378,7 @@ export default class Handler {
 				return {
 					...state,
 					saving: false,
-					posts: [
-						...existing,
-						action.data,
-					],
+					posts: mergePosts( state.posts, [ action.data ] ),
 				};
 			}
 
