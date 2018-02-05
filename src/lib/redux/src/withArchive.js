@@ -24,13 +24,17 @@ export default ( handler, getSubstate, id ) => Component => {
 
 		return {
 			posts,
-			loading: substate.loadingArchive === resolvedId,
+			loading: handler.isArchiveLoading( substate, resolvedId ),
+			hasMore: handler.hasMore( substate, resolvedId ),
+			loadingMore: handler.isLoadingMore( substate, resolvedId ),
 		};
 	};
 
 	const mapDispatchToProps = ( dispatch, props ) => {
+		const resolvedId = resolve( id, props );
 		return {
-			onLoad: () => dispatch( handler.fetchArchive( resolve( id, props ) ) ),
+			onLoad:     () => dispatch( handler.fetchArchive( resolvedId ) ),
+			onLoadMore: page => dispatch( handler.fetchMore( getSubstate, resolvedId, page ) ),
 		};
 	};
 
