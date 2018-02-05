@@ -3,10 +3,13 @@
 	width: 48%;
 	/*width: 100%;*/
 }
-.AppGridAction a {
+.AppGridAction a, .AppGridAction > span {
 	padding: 1em;
 	display: block;
 	position: relative;
+}
+.AppGridAction a {
+	cursor: pointer;
 }
 .AppGridAction a:after {
 	display: flex;

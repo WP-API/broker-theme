@@ -7,7 +7,7 @@ import NotFound from './NotFound';
 import withArchive from './lib/withArchive';
 
 const MyApps = props => {
-	const { loading, posts } = props;
+	const { hasMore, loading, loadingMore, posts } = props;
 
 	if ( loading ) {
 		return <div><h2>Loading…</h2></div>;
@@ -24,6 +24,13 @@ const MyApps = props => {
 		:
 			<p>No apps found.</p>
 		}
+
+		{ loadingMore ?
+			<AppGridAction><span>Loading…</span></AppGridAction>
+		: hasMore ?
+			<AppGridAction><a onClick={ () => props.onLoadMore() }>Load more</a></AppGridAction>
+		: null }
+
 		<AppGridAction><Link href="/apps/new/">Create new app</Link></AppGridAction>
 	</div>;
 };
