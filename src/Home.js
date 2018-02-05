@@ -6,6 +6,7 @@ import withArchive from './lib/withArchive';
 import AppGrid from './App/Grid';
 import AppGridAction from './App/GridAction';
 import Developers from './Home/Developers';
+import Link from './Link';
 import Masthead from './Home/Masthead';
 import NotFound from './NotFound';
 
@@ -31,12 +32,13 @@ const Home = props => {
 			<React.Fragment>
 				<h2>Featured Apps</h2>
 				<AppGrid apps={ featured } />
+				<AppGridAction><Link href="/apps/featured/">See all</Link></AppGridAction>
 			</React.Fragment>
 		: null }
 
 		<h2>Newest Apps</h2>
 		<AppGrid apps={ posts } />
-		<AppGridAction><a href="#">See all</a></AppGridAction>
+		<AppGridAction><Link href="/apps/newest/">See all</Link></AppGridAction>
 
 		<Developers user={ user } />
 	</div>;

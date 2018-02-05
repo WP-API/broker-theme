@@ -4,8 +4,10 @@ import { Route, Switch } from 'react-router-dom'
 import PageHeader from './PageHeader';
 import AppPage from './containers/AppPage';
 import AppCreate from './App/Create';
+import FeaturedApps from './FeaturedApps';
 import Footer from './Footer';
 import Home from './Home';
+import NewApps from './NewApps';
 import MyApps from './MyApps';
 import Page from './containers/Page';
 import NotFound from './NotFound';
@@ -22,6 +24,17 @@ export default function Main( props ) {
 					exact
 					path="/apps/mine"
 				/>
+				<Route
+					component={ NewApps }
+					exact
+					path="/apps/newest"
+				/>
+				<Route
+					component={ FeaturedApps }
+					exact
+					path="/apps/featured"
+				/>
+
 				<Route
 					component={ AppCreate }
 					exact

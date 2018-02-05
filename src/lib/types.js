@@ -21,6 +21,12 @@ apps.registerArchive( 'apps/mine', state => {
 		status: 'any',
 	};
 } );
+apps.registerArchive( 'apps/featured', {
+	sticky: true,
+} );
+apps.registerArchive( 'apps/newest', {
+	orderby: 'date',
+} );
 
 export const pages = new handler( {
 	nonce: API_NONCE,
