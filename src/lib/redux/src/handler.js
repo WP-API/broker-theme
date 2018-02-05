@@ -497,16 +497,12 @@ export default class Handler {
 				};
 
 			case this.actions.createSuccess:
-			case this.actions.updateSuccess: {
-				const { posts } = state;
-				// Remove any existing app so we can replace.
-				const existing = ( posts || [] ).filter( post => post.id !== action.data.id );
+			case this.actions.updateSuccess:
 				return {
 					...state,
 					saving: false,
 					posts: mergePosts( state.posts, [ action.data ] ),
 				};
-			}
 
 			case this.actions.createError:
 			case this.actions.updateError:
