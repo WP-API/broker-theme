@@ -169,6 +169,9 @@ export default withArchive(
 * `posts` (`object[]`): A list of objects in the archive.
 * `loading` (`boolean`): Whether the archive is currently being loaded.
 * `onLoad` (`Function`): Loader function. Called automatically by the HOC, but you can call this again if needed.
+* `hasMore` (`boolean`): Whether there are more pages of the archive to load.
+* `loadingMore` (`boolean`): Whether the next page of the archive is being loaded.
+* `onLoadMore` (`Function`): Loader function. Call this to load the next page of the archive.
 
 For convenience, you might want to make your own HOC to simplify this to just an ID:
 
@@ -189,6 +192,47 @@ export default withArchive(
 	state => state.posts,
 	props => normalizePath( props.match.path )
 )( TodayArchive );
+```
+
+
+### Pagination
+
+Pagination support for archives is included out of the box. To load the next page in an archive, simply call the `onLoadMore` prop passed in by `withArchive`.
+
+You usually only want to call `onLoadMore` if there actually is more to load, so you should check `hasMore` before calling the function. Also, you should typically only call `onLoadMore` based on user input (a button, link, scroll handler, etc); if you need more posts on load, increase the `per_page` parameter in your query instead.
+
+For example, the following component renders a simple list of posts with a button to allow fetching more:
+
+```js
+function Blog( props ) {
+	const { hasMore, loading, loadingMore, posts } = props;
+
+	if ( loading ) {
+		return <div>Loading…</div>;
+	}
+
+	if ( ! posts ) {
+		return <div>No posts</div>;
+	}
+
+	return <div>
+		<ol>
+			{ posts.map( post =>
+				<li key={ post.id }>{ post.title.rendered }</li>
+			) }
+		</ol>
+
+		{ loadingMore ?
+			<p>Loading more…</p>
+		: hasMore ?
+			<button
+				type="button"
+				onClick={ () => props.onLoadMore() }
+			>Load More</button>
+		: null }
+	</div>;
+}
+export default withArchive( posts, state => state.posts, 'blog' )( Blog );
 ```
 
 
