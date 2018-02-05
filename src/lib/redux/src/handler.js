@@ -8,6 +8,7 @@ const fetchOptions = {
 const DEFAULT_STATE = {
 	_initialized: true,
 	archives: {},
+	archivePages: {},
 	loadingPost: false,
 	loadingArchive: false,
 	posts: [],
@@ -122,7 +123,8 @@ export default class Handler {
 		const queryArgs = isFunction( query ) ? query( getState() ) : query;
 		this.fetch( this.url, queryArgs )
 			.then( results => {
-				dispatch( { type: this.actions.archiveSuccess, id, results } );
+				const pages = results.__wpTotalPages || 1;
+				dispatch( { type: this.actions.archiveSuccess, id, results, pages } );
 				return id;
 			} )
 			.catch( error => {
@@ -336,6 +338,13 @@ export default class Handler {
 					archives: {
 						...state.archives,
 						[ action.id ]: ids,
+					},
+					archivePages: {
+						...state.archivePages,
+						[ action.id ]: {
+							current: 1,
+							total:   action.pages,
+						}
 					},
 					posts: mergePosts( state.posts, action.results ),
 				};
