@@ -246,7 +246,7 @@ export const search = term => {
 		search: term,
 		orderby: 'relevance',
 	} );
-	return posts.getArchive( `search/${ term }` );
+	return posts.fetchArchive( `search/${ term }` );
 };
 
 export const getYearArchive = year => {
@@ -254,7 +254,7 @@ export const getYearArchive = year => {
 		after:  moment( { year } ).startOf( 'year' ),
 		before: moment( { year } ).endOf( 'year' ),
 	} );
-	return posts.getArchive( `years/${ year }` );
+	return posts.fetchArchive( `years/${ year }` );
 };
 ```
 
