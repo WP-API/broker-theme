@@ -10,6 +10,7 @@ import Home from './Home';
 import NewApps from './NewApps';
 import MyApps from './MyApps';
 import Page from './containers/Page';
+import Search from './containers/Search';
 import NotFound from './NotFound';
 import Login from './User/Login';
 import Profile from './User/Profile';
@@ -44,6 +45,11 @@ export default function Main( props ) {
 				<Route
 					component={ AppPage }
 					path="/apps/:id/:action?"
+				/>
+
+				<Route
+					component={ Search }
+					path="/search/:term"
 				/>
 
 				<Route
