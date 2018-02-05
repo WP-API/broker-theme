@@ -6,6 +6,7 @@ const fetchOptions = {
 };
 
 const DEFAULT_STATE = {
+	_initialized: true,
 	archives: {},
 	loadingPost: false,
 	loadingArchive: false,
@@ -390,6 +391,13 @@ export default class Handler {
 				};
 
 			default:
+				if ( ! state._initialized ) {
+					return {
+						...DEFAULT_STATE,
+						...state,
+					};
+				}
+
 				return state;
 		}
 	}
