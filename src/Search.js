@@ -2,7 +2,6 @@ import React from 'react';
 
 import AppGrid from './App/Grid';
 import AppGridAction from './App/GridAction';
-import NotFound from './NotFound';
 
 export default class Search extends React.Component {
 	componentWillMount() {

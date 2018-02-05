@@ -33,7 +33,7 @@ export default class AppDetails extends React.Component {
 	}
 
 	render() {
-		const { app, canEdit, loading, saving, user } = this.props;
+		const { app, canEdit, loading, saving } = this.props;
 
 		if ( loading ) {
 			return <Loading />;
