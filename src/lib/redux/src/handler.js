@@ -11,6 +11,7 @@ const DEFAULT_STATE = {
 	archivePages: {},
 	loadingPost: false,
 	loadingArchive: false,
+	loadingMore: false,
 	posts: [],
 	saving: false,
 };
@@ -57,18 +58,21 @@ export default class Handler {
 
 		const upperType = options.type.toUpperCase();
 		this.actions = {
-			archiveStart:   `QUERY_${ upperType }_REQUEST`,
-			archiveSuccess: `QUERY_${ upperType }`,
-			archiveError:   `QUERY_${ upperType }_ERROR`,
-			getStart:       `LOAD_${ upperType }_REQUEST`,
-			getSuccess:     `LOAD_${ upperType }`,
-			getError:       `LOAD_${ upperType }_ERROR`,
-			updateStart:    `UPDATE_${ upperType }_REQUEST`,
-			updateSuccess:  `UPDATE_${ upperType }`,
-			updateError:    `UPDATE_${ upperType }_ERROR`,
-			createStart:    `CREATE_${ upperType }_REQUEST`,
-			createSuccess:  `CREATE_${ upperType }`,
-			createError:    `CREATE_${ upperType }_ERROR`,
+			archiveStart:       `QUERY_${ upperType }_REQUEST`,
+			archiveSuccess:     `QUERY_${ upperType }`,
+			archiveError:       `QUERY_${ upperType }_ERROR`,
+			archiveMoreStart:   `QUERY_${ upperType }_MORE_REQUEST`,
+			archiveMoreSuccess: `QUERY_${ upperType }_MORE`,
+			archiveMoreError:   `QUERY_${ upperType }_MORE_ERROR`,
+			getStart:           `LOAD_${ upperType }_REQUEST`,
+			getSuccess:         `LOAD_${ upperType }`,
+			getError:           `LOAD_${ upperType }_ERROR`,
+			updateStart:        `UPDATE_${ upperType }_REQUEST`,
+			updateSuccess:      `UPDATE_${ upperType }`,
+			updateError:        `UPDATE_${ upperType }_ERROR`,
+			createStart:        `CREATE_${ upperType }_REQUEST`,
+			createSuccess:      `CREATE_${ upperType }`,
+			createError:        `CREATE_${ upperType }_ERROR`,
 
 			// Allow overrides.
 			...( options.actions || {} ),
@@ -165,6 +169,77 @@ export default class Handler {
 		const posts = ids ? substate.posts.filter( app => ids.indexOf( app.id ) >= 0 ) : null;
 
 		return posts;
+	}
+
+	/**
+	 * Are there more pages in the archive?
+	 *
+	 * Compares the currently loaded page against the total pages for
+	 * the archive.
+	 *
+	 * @param {object} substate Substate registered for the type.
+	 * @param {mixed} id Archive ID.
+	 * @return {Boolean} True if there are more pages to load, false otherwise.
+	 */
+	hasMore( substate, id ) {
+		if ( ! substate.archivePages[ id ] ) {
+			return true;
+		}
+
+		return ( substate.archivePages[ id ].current || 0 ) < ( substate.archivePages[ id ].total || 1 );
+	}
+
+	/**
+	 * Fetch the next page of the archive.
+	 *
+	 * Load the next page of the archive if we can. Automatically tracks the
+	 * current page in the state.
+	 *
+	 * @param {Function} getSubstate Function to get the current substate.
+	 * @param {mixed} id Archive ID.
+	 * @param {Number} page Page to load. Uses next page if not manually supplied.
+	 * @return {[type]} [description]
+	 */
+	fetchMore = ( getSubstate, id, page = null ) => ( dispatch, getState ) => {
+		if ( ! ( id in this.archives ) ) {
+			throw new Error( `Invalid archive ID: ${ id }` );
+		}
+
+		const state = getState();
+		const substate = getSubstate( state );
+		page = page || ( substate.archivePages[ id ].current || 1 ) + 1;
+
+		dispatch( { type: this.actions.archiveMoreStart, id, page } );
+
+		const query = this.archives[ id ];
+		const queryArgs = isFunction( query ) ? query( state ) : query;
+		queryArgs.page = page;
+
+		this.fetch( this.url, queryArgs )
+			.then( results => {
+				const total = results.__wpTotalPages || 1;
+				dispatch( { type: this.actions.archiveMoreSuccess, id, page, results, total } );
+				return id;
+			} )
+			.catch( error => {
+				dispatch( { type: this.actions.archiveMoreError, id, page, error } );
+
+				// Rethrow for other promise handlers.
+				if ( this.rethrow ) {
+					throw error;
+				}
+			} );
+	}
+
+	/**
+	 * Is the next page of the archive currently being loaded?
+	 *
+	 * @param {object} substate Substate registered for the type.
+	 * @param {mixed} id Archive ID.
+	 * @return {Boolean} True if the next page of the archive is currently being loaded, false otherwise.
+	 */
+	isLoadingMore( substate, id ) {
+		return substate.loadingMore === id;
 	}
 
 	/**
@@ -354,6 +429,43 @@ export default class Handler {
 				return {
 					...state,
 					loadingArchive: false,
+				};
+
+			// Archive pagination actions.
+			case this.actions.archiveMoreStart:
+				return {
+					...state,
+					loadingMore: action.id,
+				};
+
+			case this.actions.archiveMoreSuccess: {
+				const ids = action.results.map( post => post.id );
+				const currentIds = state.archives[ action.id ] || [];
+				return {
+					...state,
+					loadingMore: false,
+					archives: {
+						...state.archives,
+						[ action.id ]: [
+							...currentIds,
+							...ids,
+						],
+					},
+					archivePages: {
+						...state.archivePages,
+						[ action.id ]: {
+							current: action.page,
+							total:   action.total,
+						},
+					},
+					posts: mergePosts( state.posts, action.results ),
+				};
+			}
+
+			case this.actions.archiveMoreError:
+				return {
+					...state,
+					loadingMore: false,
 				};
 
 			// Single actions.
