@@ -8,7 +8,7 @@ export default function Footer() {
 			<div>
 				<h2>WP App Directory</h2>
 				<p>Proudly powered by <a href="https://wordpress.org">WordPress</a>.</p>
-				<p>This site was built with ❤️ by the REST API focus team
+				<p>This site was built with <span role="img" aria-label="love">❤️</span> by the REST API focus team
 					and <a href="https://github.com/WP-API/broker-theme/graphs/contributors">the contributors</a>.</p>
 			</div>
 			<div>
