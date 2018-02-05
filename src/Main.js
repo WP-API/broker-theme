@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import PageHeader from './PageHeader';
 import AppPage from './containers/AppPage';
 import AppCreate from './App/Create';
+import Footer from './Footer';
 import Home from './Home';
 import MyApps from './MyApps';
 import Page from './containers/Page';
@@ -56,8 +57,6 @@ export default function Main( props ) {
 				<Route component={ NotFound } />
 			</Switch>
 		</div>
-		<p className="footer-text">
-			Find the <a href="https://github.com/WP-API/broker-client">broker client</a> and <a href="https://github.com/WP-API/broker-server">broker server</a> source on GitHub.
-		</p>
+		<Footer />
 	</React.Fragment>;
 }

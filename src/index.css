@@ -118,17 +118,3 @@ form#setupform {
 	position: absolute !important;
 	width: 1px;
 }
-
-.footer-text {
-	text-align: center;
-	font-size: 12px;
-	color: #aaa;
-}
-
-.screen-reader-text {
-	clip: rect( 1px,1px,1px,1px );
-	height: 1px;
-	overflow: hidden;
-	position: absolute !important;
-	width: 1px;
-}
