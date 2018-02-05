@@ -53,4 +53,7 @@ if ( module.hot ) {
 	module.hot.accept( './Main', () => import( './Main' ).then( nextModule => {
 		render( nextModule.default );
 	} ) );
+	module.hot.accept( './lib/reducers', () => import( './lib/reducers' ).then( nextModule => {
+		store.replaceReducer( nextModule.default );
+	} ) );
 }
