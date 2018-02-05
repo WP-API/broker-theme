@@ -10,7 +10,7 @@ const DEFAULT_STATE = {
 	archives: {},
 	loadingPost: false,
 	loadingArchive: false,
-	posts: {},
+	posts: [],
 	saving: false,
 };
 
