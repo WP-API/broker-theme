@@ -1,4 +1,4 @@
-import { handler } from './redux';
+import { handler } from '@humanmade/repress';
 
 const API_ROOT = window.AppRegistryData.site.api;
 const API_NONCE = window.AppRegistryData.site.nonce;

@@ -1,4 +1,4 @@
-import { withArchive } from './redux';
+import { withArchive } from '@humanmade/repress';
 
 import { apps } from './types';
 
