@@ -11,11 +11,11 @@ const canEdit = ( user, app ) => {
 		return false;
 	}
 
-	if ( app.author === user ) {
+	if ( app.author === user.id ) {
 		return true;
 	}
 
-	if ( 'edit_posts' in user.capabilities ) {
+	if ( 'edit_oauth2_client' in user.capabilities ) {
 		return true;
 	}
 
