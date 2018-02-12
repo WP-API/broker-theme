@@ -84,14 +84,16 @@ export default class AppDetails extends React.Component {
 				</div>
 			</header>
 
-			<nav className="AppDetails-subnav">
-				<ul>
-					<li><NavLink exact to={ `${ url }/` }>View</NavLink></li>
-					<li><NavLink exact to={ `${ url }/edit/` }>App Settings</NavLink></li>
-					<li><NavLink exact to={ `${ url }/display/` }>Display Settings</NavLink></li>
-					<li><NavLink exact to={ `${ url }/visibility/` }>Visibility</NavLink></li>
-				</ul>
-			</nav>
+			{ canEdit ?
+				<nav className="AppDetails-subnav">
+					<ul>
+						<li><NavLink exact to={ `${ url }/` }>View</NavLink></li>
+						<li><NavLink exact to={ `${ url }/edit/` }>App Settings</NavLink></li>
+						<li><NavLink exact to={ `${ url }/display/` }>Display Settings</NavLink></li>
+						<li><NavLink exact to={ `${ url }/visibility/` }>Visibility</NavLink></li>
+					</ul>
+				</nav>
+			: null }
 
 			<Switch>
 				<Route path={ `${ url }/edit/` }>
