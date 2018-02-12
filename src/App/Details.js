@@ -33,6 +33,17 @@ export default class AppDetails extends React.Component {
 		}
 	}
 
+	onUploadIcon = file => {
+		const { app } = this.props;
+		this.props.onUpload( file )
+			.then( id => {
+				this.props.onSave( {
+					id: app.id,
+					featured_media: id,
+				} );
+			} );
+	}
+
 	render() {
 		const { app, canEdit, loading, saving } = this.props;
 
@@ -65,7 +76,7 @@ export default class AppDetails extends React.Component {
 				<div className="AppDetails-title">
 					<AppIcon app={ app }>
 						{ canEdit ?
-							<UploadOverlay />
+							<UploadOverlay onUpload={ this.onUploadIcon } />
 						: null }
 					</AppIcon>
 
