@@ -17,6 +17,14 @@ import './Details.css';
 const needsEditable = props => ! props.loading && props.canEdit && ! ( 'raw' in props.app.content ) && props.action !== undefined;
 
 export default class AppDetails extends React.Component {
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			uploadingIcon: false,
+		};
+	}
+
 	componentWillMount() {
 		if ( ! this.props.app && ! this.props.loading ) {
 			this.props.onLoad();
@@ -35,17 +43,27 @@ export default class AppDetails extends React.Component {
 
 	onUploadIcon = file => {
 		const { app } = this.props;
+
+		this.setState( { uploadingIcon: true } );
+
 		this.props.onUpload( file )
 			.then( id => {
-				this.props.onSave( {
+				return this.props.onSave( {
 					id: app.id,
 					featured_media: id,
 				} );
+			} )
+			.then( () => {
+				this.setState( { uploadingIcon: false } );
+			} )
+			.catch( err => {
+				this.setState( { uploadingIcon: false } );
 			} );
 	}
 
 	render() {
 		const { app, canEdit, loading, saving } = this.props;
+		const { uploadingIcon } = this.state;
 
 		if ( loading ) {
 			return <Loading />;
@@ -74,7 +92,10 @@ export default class AppDetails extends React.Component {
 
 			<header>
 				<div className="AppDetails-title">
-					<AppIcon app={ app }>
+					<AppIcon
+						app={ app }
+						isUploading={ uploadingIcon }
+					>
 						{ canEdit ?
 							<UploadOverlay onUpload={ this.onUploadIcon } />
 						: null }
