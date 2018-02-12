@@ -88,7 +88,7 @@ export default class VisibilitySettings extends React.Component {
 									value={ uris }
 									onChange={ uris => this.setState( { uris } ) }
 								/>
-								<span class="description">You can whitelist up to three sites to connect to while developing.</span>
+								<span className="description">You can whitelist up to three sites to connect to while developing.</span>
 							</div>
 						</div>
 						<Button>Save</Button>
