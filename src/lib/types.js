@@ -28,6 +28,40 @@ apps.registerArchive( 'apps/newest', {
 	orderby: 'date',
 } );
 
+export const media = new handler( {
+	nonce: API_NONCE,
+	type:  'attachment',
+	url:   `${ API_ROOT }wp/v2/media`,
+} );
+media.uploadSingle = ( function ( file ) {
+	return dispatch => {
+		// Create temporary ID to allow tracking request.
+		const id = '_tmp_' + this.tempId++;
+
+		dispatch( { type: this.actions.createStart, id, data: {} } );
+
+		const options = {
+			method: 'POST',
+			body: new FormData(),
+		};
+		options.body.append( 'file', file );
+		return this.fetch( this.url, { context: 'edit' }, options )
+			.then( data => {
+				dispatch( { type: this.actions.createSuccess, id, data } );
+				return data.id;
+			} )
+			.catch( error => {
+				console.log( error );
+				dispatch( { type: this.actions.createError, id, error } );
+
+				// Rethrow for other promise handlers.
+				if ( this.rethrow ) {
+					throw error;
+				}
+			} );
+	};
+} ).bind( media );
+
 export const pages = new handler( {
 	nonce: API_NONCE,
 	type:  'page',

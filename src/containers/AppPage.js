@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import AppDetails from '../App/Details';
-import { getApp, getAppForEdit, updateApp } from '../lib/actions';
+import { getApp, getAppForEdit, updateApp, uploadFile } from '../lib/actions';
 import { apps } from '../lib/types';
 
 const getId = props => parseInt( props.match.params.id, 10 );
@@ -43,6 +43,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
 		onLoad:        () => dispatch( getApp( id ) ),
 		onLoadForEdit: () => dispatch( getAppForEdit( id ) ),
 		onSave:        data => dispatch( updateApp( data ) ),
+		onUpload:      file => dispatch( uploadFile( file ) ),
 	};
 };
 

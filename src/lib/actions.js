@@ -1,4 +1,4 @@
-import { apps, pages } from './types';
+import { apps, media, pages } from './types';
 
 const API_ROOT = window.AppRegistryData.site.api;
 
@@ -23,6 +23,9 @@ export const searchForApps = term => {
 };
 
 export const getPage = pages.fetchPageByPath;
+
+export const getImage = media.fetchSingle;
+export const uploadFile = media.uploadSingle;
 
 export const logIn = ( username, password, remember ) => dispatch => {
 	dispatch( { type: LOG_IN_REQUEST } );
