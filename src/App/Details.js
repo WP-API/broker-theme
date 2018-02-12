@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
 import AppIcon from './Icon';
+import Status from './Status';
 import ContentWrapper from '../ContentWrapper';
 import NotFound from '../NotFound';
 import UploadOverlay from '../UploadOverlay';
@@ -72,7 +73,11 @@ export default class AppDetails extends React.Component {
 						<h1
 							dangerouslySetInnerHTML={ { __html: app.title.rendered } }
 						/>
-						<p className="AppDetails-byline">By { author.name }</p>
+						<p className="AppDetails-byline">
+							By { author.name }
+
+							<Status app={ app } />
+						</p>
 					</div>
 				</div>
 

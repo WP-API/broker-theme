@@ -22,18 +22,6 @@
 	vertical-align: middle;
 }
 
-.AppCard-draft {
-	display: inline-block;
-	background: #f56e28;
-	color: #fff;
-	padding: 0 0.25em;
-	margin: -0.5em 0 0 0.5em;
-	border-radius: 4px;
-	font-size: 0.6em;
-	line-height: 1.66667em;
-	text-transform: uppercase;
-}
-
 .AppCard-rating {
 	color: #ffb900;
 }

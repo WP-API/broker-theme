@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import AppIcon from './Icon';
+import Status from './Status';
 
 import './Card.css';
 
@@ -25,9 +26,7 @@ export default function AppCard( props ) {
 				<h2>
 					<Link to={ `/apps/${ app.id }/` }>{ app.title.rendered }</Link>
 
-					{ app.status === 'draft' ?
-						<span className="AppCard-draft">Draft</span>
-					: null }
+					<Status app={ app } />
 				</h2>
 
 				{ /*

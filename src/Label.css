@@ -1,0 +1,31 @@
+.Label {
+	display: inline-block;
+	background: #f56e28;
+	color: #fff;
+	padding: 0 0.25em;
+	margin: -0.5em 0 0 0.5em;
+	border-radius: 4px;
+	font-size: 0.6em;
+	line-height: 1.66667em;
+	text-transform: uppercase;
+}
+
+.Label.red {
+	background: #dc3232;
+}
+.Label.orange {
+	background: #f56e28;
+}
+.Label.yellow {
+	background: #ffb900;
+	color: #32373c;
+}
+.Label.green {
+	background: #46b450;
+}
+.Label.blue {
+	background: #00a0d2;
+}
+.Label.purple {
+	background: #826eb4;
+}
