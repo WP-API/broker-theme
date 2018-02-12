@@ -126,6 +126,8 @@ export default class AppDetails extends React.Component {
 							<h2>Visibility</h2>
 							<VisibilitySettings
 								app={ app }
+								saving={ saving }
+								onSave={ this.props.onSave }
 							/>
 						</React.Fragment>
 					}

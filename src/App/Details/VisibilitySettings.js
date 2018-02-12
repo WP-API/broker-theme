@@ -37,8 +37,18 @@ export default class VisibilitySettings extends React.Component {
 		};
 	}
 
-	render() {
+	onSubmitForApproval = e => {
+		e.preventDefault();
+
 		const { app } = this.props;
+		this.props.onSave( {
+			id:     app.id,
+			status: 'pending',
+		} );
+	}
+
+	render() {
+		const { app, saving } = this.props;
 		const { uris } = this.state;
 
 		const status = conditions.map( condition => {
@@ -52,11 +62,16 @@ export default class VisibilitySettings extends React.Component {
 			.reduce( ( status, condition ) => status && condition.status, true );
 
 		switch ( app.status ) {
-			case 'publish2':
+			case 'publish':
 				return <div>
 					<p>Your app is currently public and listed on the directory.</p>
 					<p>To delist your app and disable any future applications, hit the big scary button below.</p>
 					<Button>Delist my app</Button>
+				</div>;
+
+			case 'pending':
+				return <div>
+					<p>Your app is currently pending approval for publication. We'll try and get back to you in the next couple of days!</p>
 				</div>;
 
 			default:
@@ -99,9 +114,10 @@ export default class VisibilitySettings extends React.Component {
 						) }
 					</ul>
 					<Button
-						disabled={ ! ready }
+						disabled={ saving || ! ready }
+						onClick={ this.onSubmitForApproval }
 					>
-						Submit for Approval
+						{ saving ? 'Submitting…' : 'Submit for Approval' }
 					</Button>
 				</div>;
 		}
