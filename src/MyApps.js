@@ -22,7 +22,12 @@ const MyApps = props => {
 		{ posts.length ?
 			<AppGrid apps={ posts } />
 		:
-			<p>No apps found.</p>
+			<React.Fragment>
+				<p>No apps found.</p>
+				<p><Link href="/apps/new/">Create your first app now</Link>
+					{ ' or ' }
+				<Link href="/connect-for-developers/">learn how to build apps</Link> for App Connect.</p>
+			</React.Fragment>
 		}
 
 		{ loadingMore ?
