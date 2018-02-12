@@ -25,6 +25,7 @@ function bootstrap() {
 	add_action( 'widgets_init', __NAMESPACE__ . '\\register_sidebars_and_widgets' );
 
 	API\bootstrap();
+	Authorization\bootstrap();
 	Routing\bootstrap();
 }
 

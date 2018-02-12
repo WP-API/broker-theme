@@ -28,6 +28,7 @@ function alter_post_type( $args, $post_type ) {
 		'rest_base'             => 'apps',
 		'has_archive'           => true,
 		'query_var'             => true,
+		'map_meta_cap'          => true,
 		// 'rewrite'            => false,
 		'rewrite'               => [
 			'slug'       => 'apps',
@@ -35,6 +36,9 @@ function alter_post_type( $args, $post_type ) {
 		],
 	];
 	$args = array_merge( $args, $overrides );
+
+	// Use normal edit capability.
+	unset( $args['capabilities']['edit_posts'] );
 
 	$args['supports'][] = 'excerpt';
 	$args['supports'][] = 'thumbnail';
