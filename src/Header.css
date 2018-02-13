@@ -1,4 +1,4 @@
-.PageHeader {
+.Header {
 	background: RGB(0,115,170);
 	padding: 10px;
 	color: #fff;
@@ -8,7 +8,7 @@
 	font-size: 14px;
 }
 
-.PageHeader h2 {
+.Header h2 {
 	color: #fff;
 	font-size: 16px;
 	line-height: 30px;
@@ -17,31 +17,31 @@
 	align-items: center;
 }
 
-.PageHeader img {
+.Header img {
 	margin-right: 0.1rem;
 }
 
-.PageHeader a {
+.Header a {
 	color: inherit;
 }
 
-.PageHeader .user-links {
+.Header-links {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	display: flex;
 }
 
-.PageHeader .user-links li {
+.Header-links li {
 	margin-left: 1rem;
 }
 
-.PageHeader .user-links li.PageHeader-separator {
+.Header-separator {
 	margin: 0;
-	border-right: 2px solid rgba(255,255,255,.3);
+	border-right: 2px solid rgba(255, 255, 255, .3);
 	padding-right: 1rem;
 }
 
-.PageHeader .user-links a:hover {
+.Header-links a:hover {
 	text-decoration: underline;
 }
