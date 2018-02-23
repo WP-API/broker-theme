@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from '../Link';
+
 import './StartHere.css';
 
 export default function StartHere( props ) {
@@ -8,10 +10,10 @@ export default function StartHere( props ) {
 			<h2>Developers</h2>
 			<p>Build apps for the WordPress REST API using App Connect.</p>
 			<nav>
-				{ props.user ?
-					<a href="<?php echo home_url( '/apps/' ) ?>">View your Applications</a>
+				{ props.user.data ?
+					<Link href="/apps/mine/">View your Applications</Link>
 				:
-					<a href="<?php echo wp_login_url( home_url( '/apps/' ) ) ?>">Log In to Register Applications</a>
+					<Link href="/login/">Log In to Register Applications</Link>
 				}
 			</nav>
 		</div>
