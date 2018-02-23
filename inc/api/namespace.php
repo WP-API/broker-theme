@@ -89,6 +89,18 @@ function register_fields() {
 			],
 		]
 	);
+	register_rest_field(
+		Client::POST_TYPE,
+		'secret',
+		[
+			'get_callback'    => __NAMESPACE__ . '\\get_secret_field',
+			'update_callback' => __NAMESPACE__ . '\\update_secret_field',
+			'schema'          => [
+				'context' => [ 'edit' ],
+				'type'    => 'string',
+			],
+		]
+	);
 }
 
 /**
@@ -143,4 +155,42 @@ function get_client_type_field( $data, $field, WP_REST_Request $request ) {
  */
 function update_client_type_field( $value, WP_Post $post ) {
 	update_post_meta( $post->ID, Client::TYPE_KEY, $value );
+}
+
+/**
+ * Get the `secret` field.
+ *
+ * @param string $data Data being returned in the response.
+ * @param string $field Field ID.
+ * @param WP_REST_Request $request Request object.
+ * @return array|null List of redirect URIs (or null if wrong context)
+ */
+function get_secret_field( $data, $field, WP_REST_Request $request ) {
+	if ( $request['context'] !== 'edit' ) {
+		return null;
+	}
+
+	$client = Client::get_by_post_id( (int) $data['id'] );
+
+	// Triple-check:
+	if ( ! current_user_can( 'edit_post', $client->get_post_id() ) ) {
+		return null;
+	}
+
+	return $client->get_secret();
+}
+
+/**
+ * Update the `secret` field.
+ *
+ * @param array $value Value being updated.
+ * @param WP_Post $post Post being updated.
+ */
+function update_secret_field( $value, WP_Post $post ) {
+	if ( $value !== 'regenerate' ) {
+		return;
+	}
+
+	$client = Client::get_by_post_id( $post->ID );
+	$client->regenerate_secret();
 }
