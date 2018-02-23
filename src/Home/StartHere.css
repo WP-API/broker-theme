@@ -1,8 +1,17 @@
-.Developers nav {
+.StartHere {
+	display: flex;
+	justify-content: space-between;
+}
+
+.StartHere > div {
+	width: 49%;
+}
+
+.StartHere nav {
 	margin-top: 1rem;
 }
 
-.Developers nav a {
+.StartHere nav a {
 	/*background: rgb(0,160,210);*/
 	background: #00a0d2;
 	color: #fff;
@@ -10,7 +19,7 @@
 	display: inline-block;
 }
 
-.Developers nav a:hover {
+.StartHere nav a:hover {
 	background: rgba(0, 160, 210, 0.8);
 	color: #fff;
 }

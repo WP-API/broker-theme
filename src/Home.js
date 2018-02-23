@@ -5,7 +5,7 @@ import withArchive from './lib/withArchive';
 
 import AppGrid from './App/Grid';
 import AppGridAction from './App/GridAction';
-import Developers from './Home/Developers';
+import StartHere from './Home/StartHere';
 import Link from './Link';
 import Masthead from './Home/Masthead';
 import NotFound from './NotFound';
@@ -40,7 +40,7 @@ const Home = props => {
 		<AppGrid apps={ posts } />
 		<AppGridAction><Link href="/apps/newest/">See all</Link></AppGridAction>
 
-		<Developers user={ user } />
+		<StartHere user={ user } />
 	</div>;
 }
 
