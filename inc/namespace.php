@@ -24,6 +24,10 @@ function bootstrap() {
 	}, 0 );
 	add_action( 'widgets_init', __NAMESPACE__ . '\\register_sidebars_and_widgets' );
 
+	// Default handlers.
+	remove_action( 'oauth2.broker.server.endpoint_error', 'WP\\OAuth2\\Broker\\Server\\handle_endpoint_error' );
+	add_action( 'oauth2.broker.server.endpoint_error', __NAMESPACE__ . '\\handle_connect_error', 0, 2 );
+
 	API\bootstrap();
 	Authorization\bootstrap();
 	Routing\bootstrap();
@@ -98,4 +102,32 @@ function register_sidebars_and_widgets() {
 	] );
 
 	register_widget( __NAMESPACE__ . '\\Widgets\\Rating' );
+}
+
+/**
+ * Handle connection process error.
+ *
+ * @param WP_Error $error Error that occurred during processing.
+ * @param array $params Parameters passed to the endpoint.
+ */
+function handle_connect_error( $error, $params ) {
+	add_action( 'wp_enqueue_scripts', function () use ( $error, $params ) {
+		$data = [
+			'code'    => $error->get_error_code(),
+			'message' => $error->get_error_message(),
+			'params'  => $params,
+			'site'    => null,
+		];
+		$error_data = $error->get_error_data();
+		if ( isset( $error_data['site'] ) ) {
+			$site = $error_data['site'];
+
+			$data['site'] = [
+				'name'  => $site->getName(),
+				'url'   => $site->getURL(),
+				'index' => $site->getIndexURL(),
+			];
+		}
+		wp_localize_script( 'app-registry', 'AppRegistryConnectError', $data );
+	}, 20 );
 }
