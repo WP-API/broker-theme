@@ -17,6 +17,11 @@
 	align-items: center;
 }
 
+.Header h2 .Logo {
+	height: 2em;
+	margin-right: 0.5em;
+}
+
 .Header img {
 	margin-right: 0.1rem;
 }

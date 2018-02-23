@@ -1,0 +1,9 @@
+.Logo {
+	height: 4rem;
+	width: auto;
+	fill: #f56e28;
+}
+
+.Logo.light {
+	fill: #fff;
+}
