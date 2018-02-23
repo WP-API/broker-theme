@@ -8,6 +8,7 @@ import NotFound from '../NotFound';
 import UploadOverlay from '../UploadOverlay';
 import AppSettings from './Details/AppSettings';
 import VisibilitySettings from './Details/VisibilitySettings';
+import Credentials from './Details/Credentials';
 import DisplaySettings from './Details/DisplaySettings';
 import Main from './Details/Main';
 import Loading from './Details/Loading';
@@ -125,6 +126,7 @@ export default class AppDetails extends React.Component {
 				<nav className="AppDetails-subnav">
 					<ul>
 						<li><NavLink exact to={ `${ url }/` }>View</NavLink></li>
+						<li><NavLink exact to={ `${ url }/credentials/` }>Credentials</NavLink></li>
 						<li><NavLink exact to={ `${ url }/edit/` }>App Settings</NavLink></li>
 						<li><NavLink exact to={ `${ url }/display/` }>Display Settings</NavLink></li>
 						<li><NavLink exact to={ `${ url }/visibility/` }>Visibility</NavLink></li>
@@ -153,6 +155,16 @@ export default class AppDetails extends React.Component {
 						<div>Loading...</div>
 					:
 						<DisplaySettings app={ app } />
+					}
+				</Route>
+				<Route path={ `${ url }/credentials/` }>
+					{ loadingEditable ?
+						<div>Loading...</div>
+					:
+						<Credentials
+							app={ app }
+							onSave={ this.props.onSave }
+						/>
 					}
 				</Route>
 				<Route path={ `${ url }/visibility/` }>
