@@ -1,0 +1,11 @@
+.Connect_Header {
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+.Connect_Header .Logo {
+	width: 2em;
+	height: 2em;
+	margin-right: 0.5em;
+}
