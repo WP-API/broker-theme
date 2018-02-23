@@ -1,5 +1,6 @@
 .AppGridAction {
 	background: #fff;
+	box-shadow: 0 0 2px #e2e4e7;
 	width: 48%;
 	/*width: 100%;*/
 }
