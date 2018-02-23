@@ -97,6 +97,7 @@ function add_additional_app_rules( $rules ) {
 	$additional = [
 		$base . '/display/?$' => $match . '&' . ACTION_VAR . '=display',
 		$base . '/edit/?$' => $match . '&' . ACTION_VAR . '=edit',
+		$base . '/credentials/?$' => $match . '&' . ACTION_VAR . '=credentials',
 	];
 	return array_merge( $rules, $additional );
 }
