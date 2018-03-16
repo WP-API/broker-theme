@@ -13,6 +13,5 @@ require __DIR__ . '/inc/data/class-array-walker-nav-menu.php';
 require __DIR__ . '/inc/data/namespace.php';
 require __DIR__ . '/inc/loader/namespace.php';
 require __DIR__ . '/inc/routing/namespace.php';
-require __DIR__ . '/inc/widgets/class-rating.php';
 
 bootstrap();

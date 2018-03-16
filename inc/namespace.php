@@ -101,7 +101,7 @@ function register_sidebars_and_widgets() {
 		'id'   => 'app-details-sidebar',
 	] );
 
-	register_widget( __NAMESPACE__ . '\\Widgets\\Rating' );
+	// register_widget( __NAMESPACE__ . '\\Widgets\\Rating' );
 }
 
 /**
