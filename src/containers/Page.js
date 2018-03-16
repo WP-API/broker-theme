@@ -1,30 +1,11 @@
 import { connect } from 'react-redux';
+import withPage from '../lib/withPage';
 
 import Page from '../Page';
-import { getPage } from '../lib/actions';
 import { pages } from '../lib/types';
 
-const mapStateToProps = ( state, props ) => {
-	const { path } = props.match.params;
-	const page = pages.getPageByPath( state, path );
-	const id = pages.archiveForPath( path );
-
-	return {
-		page,
-		path,
-		loading: pages.isArchiveLoading( state.pages, id ),
-	};
-};
-
-const mapDispatchToProps = ( dispatch, props ) => {
-	const { path } = props.match.params;
-
-	return {
-		onLoad: () => dispatch( getPage( path ) ),
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+export default withPage(
+	pages,
+	state => state.pages,
+	props => props.match.params.path
 )( Page );

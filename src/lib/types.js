@@ -1,4 +1,5 @@
 import { handler } from '@humanmade/repress';
+import { hierarchicalHandler } from './hierarchicalHandler';
 
 const API_ROOT = window.AppRegistryData.site.api;
 const API_NONCE = window.AppRegistryData.site.nonce;
@@ -62,37 +63,12 @@ media.uploadSingle = ( function ( file ) {
 	};
 } ).bind( media );
 
-export const pages = new handler( {
+export const pages = new hierarchicalHandler( {
 	nonce: API_NONCE,
 	type:  'page',
 	url:   `${ API_ROOT }wp/v2/pages`,
 	query: {
 		_embed: '1',
 	},
+	homeUrl: SITE_HOME,
 } );
-
-// Add our extra tools.
-export const normalizePath = path => path.replace( /^\/+|\/+$/g, '' );
-const pathForPage = page => normalizePath( page.link.substr( SITE_HOME.length ) );
-pages.archiveForPath = path => `pages/${ normalizePath( path ) }`;
-pages.fetchPageByPath = path => {
-	// Query by slug for the final path component.
-	const normalized = normalizePath( path );
-	const components = normalized.split( '/' );
-	const id = pages.archiveForPath( path );
-	pages.registerArchive( id, {
-		slug: components.slice( -1 )[0],
-	} );
-
-	return pages.fetchArchive( id );
-};
-pages.getPageByPath = ( state, path ) => {
-	const normalized = normalizePath( path );
-	const allMatching = pages.getArchive( state.pages, pages.archiveForPath( normalized ) );
-	if ( ! allMatching ) {
-		return null;
-	}
-
-	// Whittle down to the only one that matches fully.
-	return allMatching.find( page => pathForPage( page ) === normalized );
-};
