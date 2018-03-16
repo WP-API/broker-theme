@@ -23,7 +23,7 @@ export default function StartHere( props ) {
 			<p>Learn about how App Connect works.</p>
 
 			<nav>
-				<a href="/about/">Learn More</a>
+				<Link href="/about/">Learn More</Link>
 			</nav>
 		</div>
 	</div>;
