@@ -42,6 +42,7 @@ function alter_post_type( $args, $post_type ) {
 
 	$args['supports'][] = 'excerpt';
 	$args['supports'][] = 'thumbnail';
+	$args['supports'][] = 'custom-fields';
 
 	return $args;
 }
@@ -98,6 +99,41 @@ function register_fields() {
 			'schema'          => [
 				'context' => [ 'edit' ],
 				'type'    => 'string',
+			],
+		]
+	);
+
+	// Regular meta fields.
+	register_meta(
+		'post',
+		'url',
+		[
+			'description'  => 'Main URL for the app.',
+			'type'         => 'string',
+			'single'       => true,
+			'show_in_rest' => [
+				'type' => 'string',
+			],
+		]
+	);
+	register_meta(
+		'post',
+		'type',
+		[
+			'description'  => 'App type.',
+			'type'         => 'string',
+			'single'       => true,
+			'default'      => 'web',
+			'show_in_rest' => [
+				'type'   => 'string',
+				'schema' => [
+					'default' => 'web',
+					'enum'    => [
+						'web',
+						'mobile',
+						'desktop',
+					],
+				],
 			],
 		]
 	);

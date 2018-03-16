@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
+import Actions from './Actions';
 import AppIcon from './Icon';
 import Status from './Status';
 import ContentWrapper from '../ContentWrapper';
@@ -114,12 +115,7 @@ export default class AppDetails extends React.Component {
 					</div>
 				</div>
 
-				<div className="AppDetails-actions">
-					<a
-						className="Button"
-						href="http://example.com/"
-					>Install</a>
-				</div>
+				<Actions app={ app } />
 			</header>
 
 			{ canEdit ?
