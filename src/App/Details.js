@@ -150,7 +150,10 @@ export default class AppDetails extends React.Component {
 					{ loadingEditable ?
 						<div>Loading...</div>
 					:
-						<DisplaySettings app={ app } />
+						<DisplaySettings
+							app={ app }
+							onSave={ this.props.onSave }
+						/>
 					}
 				</Route>
 				<Route path={ `${ url }/credentials/` }>

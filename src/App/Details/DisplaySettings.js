@@ -5,9 +5,23 @@ import Form from '../../Form';
 export default class DisplaySettings extends React.Component {
 	constructor( props ) {
 		super( props );
+
 		this.state = {
 			type: 'web',
+			url: props.app.meta.url,
 		};
+	}
+
+	onSubmit = e => {
+		e.preventDefault();
+
+		this.props.onSave( {
+			id:   this.props.app.id,
+			meta: {
+				type: this.state.type,
+				url: this.state.url,
+			}
+		} );
 	}
 
 	render() {
@@ -16,7 +30,7 @@ export default class DisplaySettings extends React.Component {
 		return <div className="App_Edit">
 			<h2>Display Settings</h2>
 			<p>These settings affect how your app is displayed on the directory.</p>
-			<Form>
+			<Form onSubmit={ this.onSubmit }>
 				{/*
 				<div className="">
 					<label>App Type</label>
@@ -96,6 +110,8 @@ export default class DisplaySettings extends React.Component {
 					<label>Website URL</label>
 					<input
 						type="url"
+						value={ this.state.url }
+						onChange={ e => this.setState( { url: e.target.value } ) }
 					/>
 				</div>
 
