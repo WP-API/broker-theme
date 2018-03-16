@@ -31,7 +31,7 @@ export default ( handler, getSubstate, path ) => Component => {
 		return {
 			page,
 			pagePath: resolvedPath,
-			loading:  handler.isArchiveLoading( substate, resolvedPath ),
+			loading:  handler.isPathLoading( substate, resolvedPath ),
 		};
 	};
 
