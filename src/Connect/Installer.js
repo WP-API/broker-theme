@@ -12,6 +12,7 @@ export default class Installer extends React.Component {
 
 		this.state = {
 			installing: false,
+			rechecking: false,
 		};
 	}
 
@@ -33,6 +34,8 @@ export default class Installer extends React.Component {
 	}
 
 	onRecheck = () => {
+		this.setState( { rechecking: true } );
+
 		const { params } = this.props;
 		const url = `/wp-json/broker/v2/connect?${ qs.stringify( { ...params, _envelope: 'true' } ) }`;
 
@@ -59,6 +62,7 @@ export default class Installer extends React.Component {
 				}
 
 				console.log( data );
+				this.setState( { rechecking: false } );
 				throw new Error( data.body.message );
 			})
 			.catch( err => {
@@ -68,15 +72,18 @@ export default class Installer extends React.Component {
 
 	render() {
 		const { site } = this.props;
-		const { installing } = this.state;
+		const { installing, rechecking } = this.state;
 
 		if ( installing ) {
 			return <React.Fragment>
 				<p>Opening plugin install window…</p>
 				<p>Once you have activated the App Connect plugin, click the button below to try again.</p>
-				<Button onClick={ this.onRecheck }>
+				<Button
+					disabled={ rechecking }
+					onClick={ this.onRecheck }
+				>
 					<i className="dashicons dashicons-update" />
-					Recheck Site
+					{ rechecking ? 'Rechecking…' : 'Recheck Site' }
 				</Button>
 			</React.Fragment>;
 		}
