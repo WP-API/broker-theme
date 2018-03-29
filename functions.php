@@ -2,7 +2,7 @@
 
 namespace AppRegistry;
 
-if ( ! function_exists( 'WP\\OAuth2\\Connect\\bootstrap' ) ) {
+if ( ! class_exists( 'WP\\OAuth2\\Client' ) ) {
 	trigger_error( 'Missing Connect plugin.', E_WARNING );
 	add_action( 'admin_notices', function () {
 		echo '<div class="error"><p>Connect plugin is required for the App Registry theme.</p></div>';
