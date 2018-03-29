@@ -36,8 +36,14 @@ export default class Installer extends React.Component {
 	onRecheck = () => {
 		this.setState( { rechecking: true } );
 
-		const { params } = this.props;
-		const url = `/wp-json/broker/v2/connect?${ qs.stringify( { ...params, _envelope: 'true' } ) }`;
+		const params = {
+			...this.props.params,
+			_envelope: 'true',
+
+			// Bust the cache.
+			_: Date.now(),
+		};
+		const url = `/wp-json/broker/v2/connect?${ qs.stringify( params ) }`;
 
 		const options = {
 			mode: 'same-origin',
