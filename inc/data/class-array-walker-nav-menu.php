@@ -60,6 +60,10 @@ class Array_Walker_Nav_Menu extends Walker_Nav_Menu {
 	 * @param array  $output            Passed by reference. Used to append additional content.
 	 */
 	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
+		if ( empty( $output ) ) {
+			$output = [];
+		}
+
 		if ( ! $element ) {
 			return;
 		}
