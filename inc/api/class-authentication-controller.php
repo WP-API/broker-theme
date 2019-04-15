@@ -170,7 +170,7 @@ class Authentication_Controller extends WP_REST_Controller {
 			return new WP_Error();
 		}
 
-		$response = $this->prepare_item_for_response( $token );
+		$response = $this->prepare_item_for_response( $token, $request );
 		if ( is_wp_error( $response ) ) {
 			return $response;
 		}
